@@ -8,7 +8,7 @@ import { randomBytes, createHash } from 'crypto';
 import { ObjectId } from 'mongoose';
 import { Document } from 'mongoose';
 
-interface IUser extends Document {
+export interface IUser extends Document {
     _id: ObjectId;
     name: string;
     email: string;

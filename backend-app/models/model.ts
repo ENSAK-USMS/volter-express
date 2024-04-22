@@ -1,13 +1,5 @@
 
 
-// DeliveryAddress model
-export interface DeliveryAddress {
-    deliveryAddressId: number;
-    city: string;
-    postalCode: string;
-    country: string;
-}
-
 // DeliveryRoute model
 export interface DeliveryRoute {
     deliveryRouteId: number;
