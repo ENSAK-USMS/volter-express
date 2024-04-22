@@ -44,7 +44,7 @@ function Header() {
                                 <a href="/shipTrack" className="nav_link">Ship and Track</a>
                             </li>
                             <li>
-                                <a href="#" className="nav_link">Analytics</a>
+                                <a href="analytics" className="nav_link">Analytics</a>
                             </li>
                         </ul>
                     </div>
@@ -53,6 +53,22 @@ function Header() {
         </header>
         <Waves />
         <div className="modal fade" id="ship" >
+          <div className="modal-dialog modal-dialog-centered modal-lg">
+            <div className="modal-content rounded-4 p-4">
+              <div className="modal-header">
+                <h5 className="modal-title">Map Modal</h5>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div className="modal-body">
+                <div id="mapContainer" style={{ height: '300px' }}></div>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="modal fade" id="route" >
           <div className="modal-dialog modal-dialog-centered modal-lg">
             <div className="modal-content rounded-4 p-4">
               <div className="modal-header">

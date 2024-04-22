@@ -46,16 +46,16 @@ const Footer = () => {
                 Useful links
               </h6>
               <p>
-                <a href="#!" className="text-reset">Home</a>
+                <a href="/" className="text-reset">Home</a>
               </p>
               <p>
-                <a href="#!" className="text-reset">Ship And Track</a>
+                <a href="aboutus" className="text-reset">About Us</a>
               </p>
               <p>
-                <a href="#!" className="text-reset">Send A Shipment</a>
+                <a href="faqs" className="text-reset">faqs</a>
               </p>
               <p>
-                <a href="#!" className="text-reset">Track Shipment</a>
+                <a href="contact" className="text-reset">Contact</a>
               </p>
             </div>
             <div className="col-md-3 col-sm-6 mx-auto mb-md-0 mb-4">

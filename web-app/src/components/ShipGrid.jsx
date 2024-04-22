@@ -35,7 +35,7 @@ const CustomersTable = () => {
                         headerName: "Actions",
                         cellRenderer: function (params) {
                             return `<div class="btn-group" role="group">
-                                    <button type="button" class="btn mx-1 rounded-2 btn-sm btn-light border-2 border border-dark" data-bs-toggle="modal" data-bs-target="#viewModal" data-bs-dismiss="modal" title="Voir le Professeur"><i class="ri-route-fill"></i></button>
+                                    <button type="button" class="btn mx-1 rounded-2 btn-sm btn-light border-2 border border-dark" data-bs-toggle="modal" data-bs-target="#route" data-bs-dismiss="modal" title="Voir le Professeur"><i class="ri-route-fill"></i></button>
                                   </div>`;
                         },
                         filter: false,

@@ -8,6 +8,7 @@ import ClientDashboard from './components/ClientDashboard'
 import Contact from './components/Contact'
 import ShipTrack from './components/Shiptrack'
 import AboutUs from './components/AboutUs'
+import Analytics from './components/Analytics'
 // pages
 
 import NotFound from "./pages/NotFound";
@@ -40,6 +41,7 @@ const Router = () => {
       { path: "/Contact", element: <Contact />},
       { path: "/shipTrack", element: <ShipTrack />},
       { path: "/aboutus", element: <AboutUs />},
+      { path: "/analytics", element: <Analytics />},
       
       ],
     },
