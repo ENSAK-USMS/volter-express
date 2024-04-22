@@ -10,14 +10,14 @@ export default function Login() {
   const onSubmit = async (data) => {
     console.log(data);
     await login(data);
-    navigate("/dashboard/646c78670df10398ac0d7d00");
+    navigate("/dashboard");
   };
   // check if user is authenticated then redirect to home page
     useEffect(() => {
       const initialize = async () => {
         const accessToken = window.localStorage.getItem("accessToken");
         if (accessToken) {
-          navigate("/dashboard/646c78670df10398ac0d7d00");
+          navigate("/dashboard");
         }
       };
       initialize();
