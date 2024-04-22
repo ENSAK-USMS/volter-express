@@ -1,4 +1,4 @@
-import User from '@models/user/user_model';
+import User from '@root/models/user_model';
 import logger from '@utils/logger';
 import AppError from '@utils/app_error';
 import generateTokens from '@utils/authorization/generate_tokens';

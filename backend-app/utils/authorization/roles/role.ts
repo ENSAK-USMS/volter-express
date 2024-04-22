@@ -1,5 +1,5 @@
 import AppError from '@utils/app_error';
-import roleModel from '@models/user/role_model';
+import roleModel from '@root/models/role_model';
 import Actions from '@constants/actions';
 
 interface RoleData {

@@ -1,5 +1,5 @@
 import { IReq } from '@interfaces/vendors';
-import USER from '@models/user/user_model';
+import USER from '@root/models/user_model';
 import Role from '@utils/authorization/roles/role';
 import AppError from '@utils/app_error';
 import validateActions from '@utils/authorization/validate_actions';

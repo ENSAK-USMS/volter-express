@@ -12,7 +12,7 @@ import {
     SuccessResponse,
     Tags,
 } from 'tsoa';
-import User from '@root/models/user/user_model';
+import User from '@root/models/user_model';
 
 @Route('api/users')
 @Security('jwt')

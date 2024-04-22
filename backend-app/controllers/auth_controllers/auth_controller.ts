@@ -10,7 +10,7 @@ import {
 } from '@utils/authorization/github';
 import AuthUtils from '@utils/authorization/auth_utils';
 import searchCookies from '@utils/searchCookie';
-import User from '@models/user/user_model';
+import User from '@root/models/user_model';
 import {
     Request,
     Res,

@@ -1,4 +1,4 @@
-import User from '@models/user/user_model';
+import User from '@root/models/user_model';
 import { ADMIN_EMAIL, ADMIN_PASSWORD } from '@config/app_config';
 import logger from '@utils/logger';
 import Role from '@utils/authorization/roles/role';

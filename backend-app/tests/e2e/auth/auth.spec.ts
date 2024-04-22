@@ -2,7 +2,7 @@ import chai from 'chai';
 import { describe, it } from 'mocha';
 import mongoose from 'mongoose';
 import app from '@root/app';
-import User from '@models/user/user_model';
+import User from '@root/models/user_model';
 import AuthUtils from '@utils/authorization/auth_utils';
 import * as supertest from 'supertest';
 const { generateAccessToken } = AuthUtils;
