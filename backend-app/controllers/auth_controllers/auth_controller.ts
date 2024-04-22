@@ -182,7 +182,25 @@ export class AuthController extends Controller {
     public async signup(
         @Request() _req: Express.Request,
         @Res() res: TsoaResponse<201, { accessToken: string; user: any }>,
-        @Body() body?: { name?: string; email?: string; password?: string }
+        @Body()
+        body?: {
+            name: string;
+            email: string;
+            phone: string;
+            companyName?: string;
+            companyAddress?: string;
+            companyCity?: string;
+            companyPostalCode?: string;
+            companyCountry?: string;
+            country?: string;
+            city?: string;
+            streetName?: string;
+            location: {
+                coordinates: number[];
+            };
+            password?: string;
+
+        }
     ) {
         const activationKey = await generateActivationKey();
         const Roles = await Role.getRoles();

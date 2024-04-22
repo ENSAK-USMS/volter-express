@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 import './utils/register_paths';
 import logger from '@utils/logger';
-import fs from 'fs';
 import { DATABASE, PORT } from './config/app_config';
 import createRoles from './utils/authorization/roles/create_roles';
 import createDefaultUser from './utils/create_default_user';

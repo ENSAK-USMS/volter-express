@@ -1,4 +1,4 @@
-import { IUser } from '@root/interfaces/models/i_user';
+import { IUser } from '@root/models/user_model';
 import User from '@root/models/user_model';
 import AppError from '@root/utils/app_error';
 import AuthUtils from '@root/utils/authorization/auth_utils';
