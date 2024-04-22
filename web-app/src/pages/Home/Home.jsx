@@ -31,8 +31,8 @@ function Home() {
                     <h3>Sign Up or Login</h3>
                     <p>Welcome back! Log in to your account or sign up to get started.</p>
                     <div className="d-grid gap-2">
-                      <button className="btn btn-primary btn-lg" type="button">Login</button>
-                      <button className="btn btn-outline-primary btn-lg" type="button">Sign Up</button>
+                      <a href='/login' className="btn btn-primary btn-lg">Login</a>
+                      <a href='/signup' className="btn btn-outline-primary btn-lg">Sign Up</a>
                     </div>
                   </div>
                 </div>

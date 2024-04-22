@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "leaflet": "^1.9.4",
     "swiper": "^11.1.1"
   }
 }

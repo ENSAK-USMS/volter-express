@@ -1,11 +1,14 @@
+import React from 'react'
+import Sidebar from '../../components/Sidebar';
+import Customer from '../../components/Customer'
 
-
-
-const Dashboard = () => {
-
+function Dashboard() {
   return (
-    <div>sdf</div>
-  );
-};
+    <div>
+      <Sidebar />
+      <Customer />
+    </div>
+  )
+}
 
-export default Dashboard;
+export default Dashboard
