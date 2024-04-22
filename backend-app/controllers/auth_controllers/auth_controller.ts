@@ -34,72 +34,6 @@ const generateActivationKey = async () => {
 @Route('api/auth')
 @Tags('Authentication')
 export class AuthController extends Controller {
-    @Get('github/callback')
-    @Response(400, 'Invalid access token or code')
-    @Response(500, 'User role does not exist. Please contact the admin.')
-    @SuccessResponse(
-        204,
-        `
-        - User logged in successfully
-        \n- User created successfully`
-    )
-    public async githubHandler(
-        @Request() _req: Express.Request,
-        @Res() res: TsoaResponse<204, { message: string }>,
-        @Query() code?: string
-    ): Promise<void> {
-        const Roles = await Role.getRoles();
-        // check if user role exists
-        if (!Roles.USER)
-            throw new AppError(
-                500,
-                'User role does not exist. Please contact the admin.'
-            );
-        if (!code) throw new AppError(400, 'Please provide code');
-        const { access_token } = await getGithubOAuthToken(code);
-        if (!access_token) throw new AppError(400, 'Invalid code');
-        const githubUser = await getGithubOAuthUser(access_token);
-        const primaryEmail = await getGithubOAuthUserPrimaryEmail(access_token);
-        // check if user exists
-        const exists = await User.findOne({ email: primaryEmail });
-        if (exists) {
-            const accessToken = AuthUtils.generateAccessToken(
-                exists._id.toString()
-            );
-            const refreshToken = AuthUtils.generateRefreshToken(
-                exists._id.toString()
-            );
-            AuthUtils.setAccessTokenCookie(this, accessToken);
-            AuthUtils.setRefreshTokenCookie(this, refreshToken);
-            res(204, { message: 'User logged in successfully' });
-            return;
-        }
-        // check if user is a new github user
-        if (!githubUser) throw new AppError(400, 'Invalid access token');
-        // create new user
-        const createdUser = await User.create({
-            name: githubUser.name,
-            email: primaryEmail,
-            password: null,
-            address: githubUser.location ? githubUser.location : null,
-            roles: [Roles.USER.name],
-            authorities: Roles.USER.authorities,
-            restrictions: Roles.USER.restrictions,
-            githubOauthAccessToken: access_token,
-            active: true,
-        });
-        // set cookies
-        const accessToken = AuthUtils.generateAccessToken(
-            createdUser._id.toString()
-        );
-        const refreshToken = AuthUtils.generateRefreshToken(
-            createdUser._id.toString()
-        );
-        AuthUtils.setAccessTokenCookie(this, accessToken);
-        AuthUtils.setRefreshTokenCookie(this, refreshToken);
-
-        res(204, { message: 'User created successfully' });
-    }
 
     @Post('login')
     @Response(
@@ -182,7 +116,25 @@ export class AuthController extends Controller {
     public async signup(
         @Request() _req: Express.Request,
         @Res() res: TsoaResponse<201, { accessToken: string; user: any }>,
-        @Body() body?: { name?: string; email?: string; password?: string }
+        @Body()
+        body?: {
+            name: string;
+            email: string;
+            phone: string;
+            companyName?: string;
+            companyAddress?: string;
+            companyCity?: string;
+            companyPostalCode?: string;
+            companyCountry?: string;
+            country?: string;
+            city?: string;
+            streetName?: string;
+            location: {
+                coordinates: number[];
+            };
+            password?: string;
+            
+        }
     ) {
         const activationKey = await generateActivationKey();
         const Roles = await Role.getRoles();

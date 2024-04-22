@@ -1,4 +1,4 @@
-import { IUser } from '@root/interfaces/models/i_user';
+import { IUser } from '@root/models/user_model';
 import { Model } from 'mongoose';
 import AppError from '@utils/app_error';
 import APIFeatures from '@utils/api_features';

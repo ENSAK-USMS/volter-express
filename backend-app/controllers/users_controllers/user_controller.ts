@@ -89,23 +89,5 @@ export class UserController extends Controller {
         res(200, doc);
     }
 
-    // @Get()
-    // public async getAllUsers(): Promise<any> {
-    //     return Promise.resolve(base.getAll(User));
-    // }
 
-    // @Get('{id}')
-    // public async getUser(@Path() id: string): Promise<any> {
-    //     return base.getOne(User, id);
-    // }
-
-    // @Put('{id}')
-    // public async updateUser(id: string): Promise<void> {
-    //     base.updateOne(User,id);
-    // }
-
-    // @Delete('{id}')
-    // public async deleteUser(id: string): Promise<void> {
-    //     base.deleteOne(User,id);
-    // }
 }
