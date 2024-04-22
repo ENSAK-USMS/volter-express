@@ -1,5 +1,5 @@
 import { Request } from 'express';
-import User from '@models/user/user_model';
+import User from '@root/models/user_model';
 import AppError from '@root/utils/app_error';
 
 export function InspectAuthority(...actions: string[]): MethodDecorator {

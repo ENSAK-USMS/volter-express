@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import '@utils/register_paths';
-import Role from '@models/user/role_model';
-import User from '@models/user/user_model';
+import Role from '@root/models/role_model';
+import User from '@root/models/user_model';
 import logger from '@utils/logger';
 import { DATABASE, ADMIN_EMAIL, ADMIN_PASSWORD } from '@config/app_config';
 import Actions from '@constants/actions';

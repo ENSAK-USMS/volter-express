@@ -4,7 +4,52 @@ import bcrypt from 'bcrypt';
 import Actions from '@constants/actions';
 import metaData from '@constants/meta_data';
 import { randomBytes, createHash } from 'crypto';
-import { IUser } from '@interfaces/models/i_user';
+
+import { ObjectId } from 'mongoose';
+import { Document } from 'mongoose';
+
+export interface IUser extends Document {
+    _id: ObjectId;
+    name: string;
+    email: string;
+    phone: string;
+    companyName?: string;
+    companyAddress?: string;
+    companyCity?: string;
+    companyPostalCode?: string;
+    companyCountry?: string;
+    country?: string;
+    city?: string;
+    streetName?: string;
+    location: {
+        coordinates: number[];
+    };
+    password?: string;
+    authorities: string[];
+    restrictions: string[];
+    roles: string[];
+    active: boolean;
+    activationKey?: string;
+    accessRestricted: boolean;
+    githubOauthAccessToken?: string;
+    resetKey?: string;
+    createdAt: Date;
+    updatedAt: Date;
+    deleted: boolean;
+    deletedBy?: string;
+    deletedAt?: Date;
+    createdBy?: string;
+    updatedBy?: string;
+    correctPassword(
+        typedPassword: string,
+        originalPassword: string
+    ): Promise<boolean>;
+    isAuthorizedTo(action: string[]): boolean;
+    isRestrictedFrom(action: string[]): boolean;
+    generateResetKey(): string;
+}
+
+
 
 const userSchema: Schema = new mongoose.Schema<IUser>(
     {
@@ -18,9 +63,46 @@ const userSchema: Schema = new mongoose.Schema<IUser>(
             lowercase: true,
             validate: [validator.isEmail, ' Please provide a valid email'],
         },
-        address: {
+        phone: {
+            type: String,
+            required: [true, 'Please fill your phone number'],
+            validate: {
+                validator: function (v: string) {
+                    return validator.isMobilePhone(v, 'any', { strictMode: true });
+                },
+                message: 'Please provide a valid phone number',
+            },
+        },
+        companyName: {
+            type: String,
+        },
+        companyAddress: {
             type: String,
             trim: true,
+        },
+        companyCity: {
+            type: String,
+        },
+        companyPostalCode: {
+            type: String,
+        },
+        companyCountry: {
+            type: String,
+        },
+        country: {
+            type: String,
+        },
+        city: {
+            type: String,
+        },
+        streetName: {
+            type: String,
+        },
+        location: {
+            coordinates: {
+                type: [Number],
+                default: [0, 0],
+            },
         },
         password: {
             type: String,
