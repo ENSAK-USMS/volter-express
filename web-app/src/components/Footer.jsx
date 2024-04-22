@@ -1,4 +1,5 @@
 import React from 'react';
+import logo from '../assets/logo.png';
 
 const Footer = () => {
   return (
@@ -34,7 +35,7 @@ const Footer = () => {
           <div className="row mt-3">
             <div className="col-md-6 col-sm-12 mx-auto mb-4">
               <h6 className="text-uppercase fw-bold mb-4">
-                <i className="fas fa-map-marker-alt me-3"></i>FastX, Morocco
+                <i className="fas fa-map-marker-alt me-3"></i><img src={logo} height={50} className='me-2' />FastX, Morocco
               </h6>
               <p>
               Welcome to FAST X, your premier destination for fast and reliable delivery services. With our efficient delivery network and dedicated team, we ensure that your packages reach their destination in the shortest time possible. Whether it's a small parcel or a large shipment, we've got you covered. Experience the convenience and speed of FAST X today!

@@ -29,7 +29,7 @@ export default function Login() {
   return (
     <>
       <Header />
-      <div className="container d-flex justify-content-center align-items-center vh-75">
+      <div className="container d-flex justify-content-center align-items-center vh-100">
         <div className="card shadow p-4 rounded">
           <h2 className="text-center mb-4">Login</h2>
           <form>
@@ -41,8 +41,11 @@ export default function Login() {
               <label htmlFor="password" className="form-label">Password</label>
               <input type="password" className="form-control" id="password" />
             </div>
-            <div className="d-grid">
+            <div className="d-grid mb-3">
               <button type="submit" className="btn btn-primary">Login</button>
+            </div>
+            <div className="text-center">
+              <p className="mb-0">Don't have an account? <Link to="/signup">Sign up</Link></p>
             </div>
           </form>
         </div>
