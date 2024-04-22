@@ -5,3 +5,18 @@
 .vh-75{
   height: 60vh;
 }
+.vh-90{
+  height: 90vh;
+}
+.vh-80{
+  height: 80vh;
+}
+.text-justify{
+  text-align: justify;
+}
+.text{
+  display: inline-block;
+  color: #1e1f25;
+  font-size: 23px;
+  font-weight: 500;
+}

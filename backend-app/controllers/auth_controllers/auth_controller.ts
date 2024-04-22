@@ -3,11 +3,7 @@ import { promisify } from 'util';
 import AppError from '@utils/app_error';
 import Role from '@utils/authorization/roles/role';
 import { REQUIRE_ACTIVATION } from '@config/app_config';
-import {
-    getGithubOAuthUser,
-    getGithubOAuthToken,
-    getGithubOAuthUserPrimaryEmail,
-} from '@utils/authorization/github';
+
 import AuthUtils from '@utils/authorization/auth_utils';
 import searchCookies from '@utils/searchCookie';
 import User from '@root/models/user_model';

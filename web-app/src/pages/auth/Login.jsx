@@ -28,29 +28,27 @@ export default function Login() {
         
   return (
     <>
-      <Header />
-      <div className="container d-flex justify-content-center align-items-center vh-100">
-        <div className="card shadow p-4 rounded">
-          <h2 className="text-center mb-4">Login</h2>
-          <form>
-            <div className="mb-3">
-              <label htmlFor="email" className="form-label">Email address</label>
-              <input type="email" className="form-control" id="email" placeholder="name@example.com" />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="password" className="form-label">Password</label>
-              <input type="password" className="form-control" id="password" />
-            </div>
-            <div className="d-grid mb-3">
-              <button type="submit" className="btn btn-primary">Login</button>
-            </div>
-            <div className="text-center">
-              <p className="mb-0">Don't have an account? <Link to="/signup">Sign up</Link></p>
-            </div>
-          </form>
+        <div className="container d-flex justify-content-center align-items-center vh-75">
+          <div className="card shadow p-5 rounded-4">
+            <h2 className="text-center mb-4">Login</h2>
+            <form>
+              <div className="mb-3">
+                <label htmlFor="email" className="form-label">Email address</label>
+                <input type="email" className="form-control" id="email" placeholder="name@example.com" />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="password" className="form-label">Password</label>
+                <input type="password" className="form-control" id="password" />
+              </div>
+              <div className="d-grid mb-3">
+                <button type="submit" className="btn btn-primary">Login</button>
+              </div>
+              <div className="text-center">
+                <p className="mb-0">Don't have an account? <a href="signup">Sign up</a></p>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
-      <Footer />
     </>
 
   );
