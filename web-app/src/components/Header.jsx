@@ -41,7 +41,10 @@ function Header() {
                             </li>
                             AUTHENTIFICATED
                             <li>
-                                <a href="/shipTrack" className="nav_link">Ship and Track</a>
+                                <a href="products" className="nav_link">Products</a>
+                            </li>
+                            <li>
+                                <a href="shipTrack" className="nav_link">Orders</a>
                             </li>
                             <li>
                                 <a href="analytics" className="nav_link">Analytics</a>

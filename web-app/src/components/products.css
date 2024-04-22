@@ -1,0 +1,15 @@
+.sidebar-maproute {
+    position: absolute;
+    bottom: -1000px; /* Initially position the sidebar at the bottom */
+    width: 100%; /* Sidebar width */
+    height: 100%;
+    transition: bottom 0.5s ease-in-out; /* Update the transition property */
+    overflow: hidden;
+    background: white;
+    z-index: 1000;
+  }
+  
+  .sidebar-maproute.open {
+    bottom: 0; /* Keep the bottom value the same as in the initial position */
+    overflow-y: auto;
+  }
