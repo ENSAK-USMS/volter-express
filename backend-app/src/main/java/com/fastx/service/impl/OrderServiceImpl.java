@@ -43,12 +43,6 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository
             .findById(order.getId())
             .map(existingOrder -> {
-                if (order.getOrderId() != null) {
-                    existingOrder.setOrderId(order.getOrderId());
-                }
-                if (order.getOrderDate() != null) {
-                    existingOrder.setOrderDate(order.getOrderDate());
-                }
                 if (order.getTotalAmount() != null) {
                     existingOrder.setTotalAmount(order.getTotalAmount());
                 }

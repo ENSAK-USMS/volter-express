@@ -18,11 +18,6 @@ public class Order implements Serializable {
     @Id
     private String id;
 
-    @Field("order_id")
-    private Long orderId;
-
-    @Field("order_date")
-    private Instant orderDate;
 
     @Field("total_amount")
     private Float totalAmount;
@@ -54,31 +49,10 @@ public class Order implements Serializable {
         this.id = id;
     }
 
-    public Long getOrderId() {
-        return this.orderId;
-    }
 
-    public Order orderId(Long orderId) {
-        this.setOrderId(orderId);
-        return this;
-    }
 
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
-    }
 
-    public Instant getOrderDate() {
-        return this.orderDate;
-    }
 
-    public Order orderDate(Instant orderDate) {
-        this.setOrderDate(orderDate);
-        return this;
-    }
-
-    public void setOrderDate(Instant orderDate) {
-        this.orderDate = orderDate;
-    }
 
     public Float getTotalAmount() {
         return this.totalAmount;
@@ -169,8 +143,6 @@ public class Order implements Serializable {
     public String toString() {
         return "Order{" +
             "id=" + getId() +
-            ", orderId=" + getOrderId() +
-            ", orderDate='" + getOrderDate() + "'" +
             ", totalAmount=" + getTotalAmount() +
             ", weightKg=" + getWeightKg() +
             ", status='" + getStatus() + "'" +
