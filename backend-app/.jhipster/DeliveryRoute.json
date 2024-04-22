@@ -1,0 +1,26 @@
+{
+  "annotations": {
+    "changelogDate": "20240422221639"
+  },
+  "applications": ["fastx"],
+  "entityTableName": "delivery_route",
+  "fields": [
+    {
+      "fieldName": "deliveryRouteId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "estimatedTravelTime",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "specialInstructions",
+      "fieldType": "String"
+    }
+  ],
+  "name": "DeliveryRoute",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

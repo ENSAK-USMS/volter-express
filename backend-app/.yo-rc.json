@@ -1,0 +1,24 @@
+{
+  "generator-jhipster": {
+    "applicationIndex": 0,
+    "applicationType": "monolith",
+    "authenticationType": "jwt",
+    "baseName": "fastx",
+    "clientFramework": "react",
+    "databaseType": "mongodb",
+    "devDatabaseType": "mongodb",
+    "devServerPort": 9060,
+    "enableHibernateCache": false,
+    "entities": ["Delivery", "Order", "Receiver", "DeliveryRoute", "DeliveryTruck", "Profile"],
+    "jhipsterVersion": "8.1.0",
+    "jwtSecretKey": "ODZhZDg0ZjcxMGNmYTFiZTY1NjU1NTU1OTU4YTE4MjQ4OTk5OGVmZTk0YTEwNTdhMTczMzY1ZDZhMTgzN2U4ZWVmZTZhODQxMjVhMzFmMjNmNmU0M2JlNWU3M2MyODc3NDg2YTM1Zjk1ZTg5YjA2NTZiYzU0NjliNWE1ZTNmMTc=",
+    "languages": ["en", "fr"],
+    "lastLiquibaseTimestamp": 1713824319000,
+    "monorepository": true,
+    "nativeLanguage": "en",
+    "packageFolder": "com/fastx",
+    "packageName": "com.fastx",
+    "prodDatabaseType": "mongodb",
+    "skipCommitHook": true
+  }
+}

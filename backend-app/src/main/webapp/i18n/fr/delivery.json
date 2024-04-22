@@ -1,0 +1,31 @@
+{
+  "fastxApp": {
+    "delivery": {
+      "home": {
+        "title": "Deliveries",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Delivery",
+        "createOrEditLabel": "Créer ou éditer un Delivery",
+        "notFound": "Aucun Delivery trouvé"
+      },
+      "created": "Un nouveau Delivery a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Delivery avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Delivery avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Delivery {{ id }} ?"
+      },
+      "detail": {
+        "title": "Delivery"
+      },
+      "id": "ID",
+      "deliveryDate": "Delivery Date",
+      "orderId": "Order Id",
+      "deliveryAddressId": "Delivery Address Id",
+      "deliveryRouteId": "Delivery Route Id",
+      "estimatedTravelTime": "Estimated Travel Time",
+      "deliveryTruckId": "Delivery Truck Id",
+      "receiverId": "Receiver Id",
+      "orderTruckingNumber": "Order Trucking Number"
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "annotations": {
+    "changelogDate": "20240422221839"
+  },
+  "applications": ["fastx"],
+  "entityTableName": "profile",
+  "fields": [
+    {
+      "fieldName": "phone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "companyName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "companyAddress",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "companyCity",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "companyPostalCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "companyCountry",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "country",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "city",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "streetName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "locationLat",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "locationLon",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "profileType",
+      "fieldType": "ProfileType",
+      "fieldValues": "COMPANY,ADMIN"
+    }
+  ],
+  "name": "Profile",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

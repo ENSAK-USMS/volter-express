@@ -1,0 +1,42 @@
+{
+  "annotations": {
+    "changelogDate": "20240422221439"
+  },
+  "applications": ["fastx"],
+  "entityTableName": "order",
+  "fields": [
+    {
+      "fieldName": "orderId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "orderDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "totalAmount",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "weightKg",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "expirationDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "deliveryId",
+      "fieldType": "Long"
+    }
+  ],
+  "name": "Order",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

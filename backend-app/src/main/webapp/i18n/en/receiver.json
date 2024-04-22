@@ -1,0 +1,30 @@
+{
+  "fastxApp": {
+    "receiver": {
+      "home": {
+        "title": "Receivers",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Receiver",
+        "createOrEditLabel": "Create or edit a Receiver",
+        "notFound": "No Receivers found"
+      },
+      "created": "A new Receiver is created with identifier {{ param }}",
+      "updated": "A Receiver is updated with identifier {{ param }}",
+      "deleted": "A Receiver is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Receiver {{ id }}?"
+      },
+      "detail": {
+        "title": "Receiver"
+      },
+      "id": "ID",
+      "name": "Name",
+      "country": "Country",
+      "city": "City",
+      "email": "Email",
+      "phone": "Phone",
+      "streetName": "Street Name",
+      "location": "Location"
+    }
+  }
+}

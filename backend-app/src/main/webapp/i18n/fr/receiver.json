@@ -1,0 +1,30 @@
+{
+  "fastxApp": {
+    "receiver": {
+      "home": {
+        "title": "Receivers",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Receiver",
+        "createOrEditLabel": "Créer ou éditer un Receiver",
+        "notFound": "Aucun Receiver trouvé"
+      },
+      "created": "Un nouveau Receiver a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Receiver avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Receiver avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Receiver {{ id }} ?"
+      },
+      "detail": {
+        "title": "Receiver"
+      },
+      "id": "ID",
+      "name": "Name",
+      "country": "Country",
+      "city": "City",
+      "email": "Email",
+      "phone": "Phone",
+      "streetName": "Street Name",
+      "location": "Location"
+    }
+  }
+}
