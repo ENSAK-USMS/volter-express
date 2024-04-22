@@ -7,6 +7,7 @@ import Login from "./pages/auth/Login";
 import NotFound from "./pages/NotFound";
 import AuthGuard from "./guards/AuthGuard";
 import Dashboard from "./pages/dashboard/Dashboard";
+import Home from "./pages/Home/Home";
 // ----------------------------------------------------------------------
 
 const Router = () => {
@@ -18,10 +19,16 @@ const Router = () => {
         </AuthGuard>
       ),
       children: [
-        { path: "/", element: <Dashboard /> },
+        { path: "/admin", element: <Dashboard /> },
       ],
     },
     { path: "/login", element: <Login /> },
+    
+    { path: "/", element: <Root /> ,
+      children: [
+        { path: "/", element: <Home /> },
+      ],
+    },
     { path: "*", element: <NotFound /> },
   ]);
 

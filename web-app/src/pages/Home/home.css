@@ -1,0 +1,12 @@
+body {
+    background: linear-gradient(109.6deg, rgb(6, 183, 249) 11.2%, rgb(25, 74, 236) 91.1%);
+    height: 120vh;
+}
+
+.bg-transparent {
+    background: transparent!important;
+}
+.content{
+    position: relative;
+    background-color: var(--body-color);
+  }
