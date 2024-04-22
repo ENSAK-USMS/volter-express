@@ -1,0 +1,30 @@
+{
+  "fastxApp": {
+    "deliveryTruck": {
+      "home": {
+        "title": "DeliveryTrucks",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Delivery Truck",
+        "createOrEditLabel": "Créer ou éditer un Delivery Truck",
+        "notFound": "Aucun Delivery Truck trouvé"
+      },
+      "created": "Un nouveau Delivery Truck a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Delivery Truck avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Delivery Truck avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Delivery Truck {{ id }} ?"
+      },
+      "detail": {
+        "title": "Delivery Truck"
+      },
+      "id": "ID",
+      "deliveryTruckId": "Delivery Truck Id",
+      "capacityKg": "Capacity Kg",
+      "currentLocation": "Current Location",
+      "status": "Status",
+      "driverName": "Driver Name",
+      "driverContact": "Driver Contact",
+      "licensePlate": "License Plate"
+    }
+  }
+}

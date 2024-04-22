@@ -1,0 +1,26 @@
+{
+  "fastxApp": {
+    "deliveryRoute": {
+      "home": {
+        "title": "Delivery Routes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Delivery Route",
+        "createOrEditLabel": "Create or edit a Delivery Route",
+        "notFound": "No Delivery Routes found"
+      },
+      "created": "A new Delivery Route is created with identifier {{ param }}",
+      "updated": "A Delivery Route is updated with identifier {{ param }}",
+      "deleted": "A Delivery Route is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Delivery Route {{ id }}?"
+      },
+      "detail": {
+        "title": "Delivery Route"
+      },
+      "id": "ID",
+      "deliveryRouteId": "Delivery Route Id",
+      "estimatedTravelTime": "Estimated Travel Time",
+      "specialInstructions": "Special Instructions"
+    }
+  }
+}

@@ -1,0 +1,90 @@
+
+application {
+  config {
+    baseName fastx
+    applicationType monolith
+    packageName com.fastx
+    authenticationType jwt
+    databaseType mongodb
+    clientFramework react
+    languages [en,fr]
+  }
+  entities *
+}
+
+
+
+entity Delivery {
+    deliveryDate Instant,
+    orderId Long,
+    deliveryAddressId Long,
+    deliveryRouteId Long,
+    estimatedTravelTime Integer,
+    deliveryTruckId Long,
+    receiverId Long,
+    orderTruckingNumber Long
+}
+
+entity Order {
+    orderId Long,
+    orderDate Instant,
+    totalAmount Float,
+    weightKg Float,
+    status String,
+    expirationDate Instant,
+    deliveryId Long
+}
+
+entity Receiver {
+    name String,
+    country String,
+    city String,
+    email String,
+    phone String,
+    streetName String,
+    location Long
+}
+
+entity DeliveryRoute {
+    deliveryRouteId Long,
+    estimatedTravelTime Integer,
+    specialInstructions String
+}
+ 
+
+entity DeliveryTruck {
+    deliveryTruckId Long required,
+    capacityKg Float,
+    currentLocation Integer,
+    status String,
+    driverName String,
+    driverContact String,
+    licensePlate String
+}
+
+
+entity Profile {
+    phone String,
+    companyName String,
+    companyAddress String,
+    companyCity String,
+    companyPostalCode String,
+    companyCountry String,
+    country String,
+    city String,
+    streetName String,
+    locationLat Float,
+    locationLon Float,
+    profileType ProfileType,
+    userId String
+}
+
+enum ProfileType {
+    COMPANY, ADMIN
+}
+
+
+
+paginate Order,Delivery,DeliveryRoute with pagination
+
+service all with serviceImpl

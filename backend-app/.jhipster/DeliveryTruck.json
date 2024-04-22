@@ -1,0 +1,42 @@
+{
+  "annotations": {
+    "changelogDate": "20240422221739"
+  },
+  "applications": ["fastx"],
+  "entityTableName": "delivery_truck",
+  "fields": [
+    {
+      "fieldName": "deliveryTruckId",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "capacityKg",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "currentLocation",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "driverName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "driverContact",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "licensePlate",
+      "fieldType": "String"
+    }
+  ],
+  "name": "DeliveryTruck",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

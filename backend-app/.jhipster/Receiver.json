@@ -1,0 +1,41 @@
+{
+  "annotations": {
+    "changelogDate": "20240422221539"
+  },
+  "applications": ["fastx"],
+  "entityTableName": "receiver",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "country",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "city",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "phone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "streetName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "location",
+      "fieldType": "Long"
+    }
+  ],
+  "name": "Receiver",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

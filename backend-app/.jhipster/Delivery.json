@@ -1,0 +1,46 @@
+{
+  "annotations": {
+    "changelogDate": "20240422221339"
+  },
+  "applications": ["fastx"],
+  "entityTableName": "delivery",
+  "fields": [
+    {
+      "fieldName": "deliveryDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "orderId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "deliveryAddressId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "deliveryRouteId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "estimatedTravelTime",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "deliveryTruckId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "receiverId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "orderTruckingNumber",
+      "fieldType": "Long"
+    }
+  ],
+  "name": "Delivery",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}
