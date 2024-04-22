@@ -1,6 +1,4 @@
 import useAuth from "../../hooks/useAuth";
-import "./css/main.css";
-import "./css/util.css";
 // useNavigate
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
