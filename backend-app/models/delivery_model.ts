@@ -6,9 +6,10 @@ export interface IDelivery extends Document {
     orderId: number;
     deliveryAddressId: number;
     deliveryRouteId: number;
+    estimatedTravelTime: Number;
     deliveryTruckId: number;
     receiverId: number;
-    status: string;
+    orderTruckingNumber: number;
 }
 
 
@@ -30,13 +31,21 @@ const deliverySchema: Schema = new mongoose.Schema<IDelivery>(
             type: Number,
             required: [true, 'Please fill in the delivery route id'],
         },
+        estimatedTravelTime: {
+            type: Number,
+            required: [true, 'Please fill in the estimated travel time'],
+        },
         deliveryTruckId: {
             type: Number,
             required: [true, 'Please fill in the delivery truck id'],
         },
-        status: {
-            type: String,
-            required: [true, 'Please fill in the delivery status'],
+        receiverId: {
+            type: Number,
+            required: [true, 'Please fill in the receiver id'],
+        },
+        orderTruckingNumber: {
+            type: Number,
+            required: [true, 'Please fill in the order trucking number'],
         },
     },
     {

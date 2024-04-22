@@ -6,6 +6,7 @@ export interface IOrder extends mongoose.Document {
     totalAmount: number;
     weightKg: number;
     status: string;
+    expirationDate: Date;
     deliveryId: number;
 }
 
@@ -21,6 +22,8 @@ const orderSchema: Schema = new mongoose.Schema<IOrder>({
     },
 
     deliveryId: { type: Number },
+    expirationDate: { type: Date, required: true },
+
 });
 
 const OrderModel = model<IOrder>('Order', orderSchema);
