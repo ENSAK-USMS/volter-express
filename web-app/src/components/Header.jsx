@@ -1,6 +1,7 @@
 import React from 'react';
 import './header.css';
 import Waves from './Waves';
+import logo from '../assets/logo.png';
 
 function Header() {
     return (
@@ -10,7 +11,12 @@ function Header() {
                 <nav className="nav">
                     <div className="nav_data">
                         <a href="#" className="nav_logo p-1 text_purple">
-                            <h4 className="logo_text text-uppercase fw-bold" style={{ marginTop: '5px' }}>FASTX</h4>
+                        <div className='d-flex align-items-center'>
+                            <img src={logo} height={50} className='me-2' />
+                            <h4 className="logo_text text-uppercase fw-bold" style={{ marginTop: '10px' }}> 
+                              FASTX
+                            </h4>
+                        </div>
                         </a>
 
                         <div className="nav_toggle" id="nav-toggle">
