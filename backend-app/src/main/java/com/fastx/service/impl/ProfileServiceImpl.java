@@ -45,24 +45,6 @@ public class ProfileServiceImpl implements ProfileService {
                 if (profile.getPhone() != null) {
                     existingProfile.setPhone(profile.getPhone());
                 }
-                if (profile.getCompanyName() != null) {
-                    existingProfile.setCompanyName(profile.getCompanyName());
-                }
-                if (profile.getCompanyAddress() != null) {
-                    existingProfile.setCompanyAddress(profile.getCompanyAddress());
-                }
-                if (profile.getCompanyCity() != null) {
-                    existingProfile.setCompanyCity(profile.getCompanyCity());
-                }
-                if (profile.getCompanyPostalCode() != null) {
-                    existingProfile.setCompanyPostalCode(profile.getCompanyPostalCode());
-                }
-                if (profile.getCompanyCountry() != null) {
-                    existingProfile.setCompanyCountry(profile.getCompanyCountry());
-                }
-                if (profile.getCountry() != null) {
-                    existingProfile.setCountry(profile.getCountry());
-                }
                 if (profile.getCity() != null) {
                     existingProfile.setCity(profile.getCity());
                 }

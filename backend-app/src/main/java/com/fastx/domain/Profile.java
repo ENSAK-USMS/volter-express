@@ -21,21 +21,6 @@ public class Profile implements Serializable {
     @Field("phone")
     private String phone;
 
-    @Field("company_name")
-    private String companyName;
-
-    @Field("company_address")
-    private String companyAddress;
-
-    @Field("company_city")
-    private String companyCity;
-
-    @Field("company_postal_code")
-    private String companyPostalCode;
-
-    @Field("company_country")
-    private String companyCountry;
-
     @Field("country")
     private String country;
 
@@ -88,74 +73,14 @@ public class Profile implements Serializable {
         this.phone = phone;
     }
 
-    public String getCompanyName() {
-        return this.companyName;
-    }
 
-    public Profile companyName(String companyName) {
-        this.setCompanyName(companyName);
-        return this;
-    }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
 
-    public String getCompanyAddress() {
-        return this.companyAddress;
-    }
 
-    public Profile companyAddress(String companyAddress) {
-        this.setCompanyAddress(companyAddress);
-        return this;
-    }
 
-    public void setCompanyAddress(String companyAddress) {
-        this.companyAddress = companyAddress;
-    }
 
-    public String getCompanyCity() {
-        return this.companyCity;
-    }
 
-    public Profile companyCity(String companyCity) {
-        this.setCompanyCity(companyCity);
-        return this;
-    }
 
-    public void setCompanyCity(String companyCity) {
-        this.companyCity = companyCity;
-    }
-
-    public String getCompanyPostalCode() {
-        return this.companyPostalCode;
-    }
-
-    public Profile companyPostalCode(String companyPostalCode) {
-        this.setCompanyPostalCode(companyPostalCode);
-        return this;
-    }
-
-    public void setCompanyPostalCode(String companyPostalCode) {
-        this.companyPostalCode = companyPostalCode;
-    }
-
-    public String getCompanyCountry() {
-        return this.companyCountry;
-    }
-
-    public Profile companyCountry(String companyCountry) {
-        this.setCompanyCountry(companyCountry);
-        return this;
-    }
-
-    public void setCompanyCountry(String companyCountry) {
-        this.companyCountry = companyCountry;
-    }
-
-    public String getCountry() {
-        return this.country;
-    }
 
     public Profile country(String country) {
         this.setCountry(country);
@@ -269,12 +194,6 @@ public class Profile implements Serializable {
         return "Profile{" +
             "id=" + getId() +
             ", phone='" + getPhone() + "'" +
-            ", companyName='" + getCompanyName() + "'" +
-            ", companyAddress='" + getCompanyAddress() + "'" +
-            ", companyCity='" + getCompanyCity() + "'" +
-            ", companyPostalCode='" + getCompanyPostalCode() + "'" +
-            ", companyCountry='" + getCompanyCountry() + "'" +
-            ", country='" + getCountry() + "'" +
             ", city='" + getCity() + "'" +
             ", streetName='" + getStreetName() + "'" +
             ", locationLat=" + getLocationLat() +
