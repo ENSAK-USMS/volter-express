@@ -204,10 +204,15 @@ const ProductsManagement = () => {
       <SendProductModal data={data} />
       <RouteMap
         waypoints={[
-          L.latLng(51.5, -0.09), 
-          L.latLng(51.51, -0.1) 
+          L.latLng(34.020882, -6.841650), // Rabat
+          L.latLng(33.971590, -6.849813), // Temara
+          L.latLng(33.926039, -6.894477), // Bouznika
+          L.latLng(33.691515, -7.392832), // Mohammedia
+          L.latLng(33.595062, -7.618754), // Ain Harrouda
+          L.latLng(33.589886, -7.603869), // Casablanca
         ]}
       />
+
       <div className="modal fade" id="mapModal" tabIndex="-1">
         <div className="modal-dialog modal-dialog-centered modal-xl">
           <div className="modal-content rounded-4 px-2">
