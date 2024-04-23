@@ -21,21 +21,21 @@ function base() {
                         <span className="tooltip">Tableau de bord</span>
                     </li>
                     <li>
-                        <a href="order">
+                        <a href="/order">
                             <i className="ri-box-1-fill"></i>
                             <span className="links_name">Order</span>
                         </a>
                         <span className="tooltip">Order</span>
                     </li>
                     <li>
-                        <a href="customer">
+                        <a href="/customer">
                             <i className="ri-user-fill"></i>
                             <span className="links_name">Customer</span>
                         </a>
                         <span className="tooltip">Customer</span>
                     </li>
                     <li>
-                        <a href="truck">
+                        <a href="/truck">
                             <i className="ri-truck-fill"></i>
                             <span className="links_name">Truck</span>
                         </a>

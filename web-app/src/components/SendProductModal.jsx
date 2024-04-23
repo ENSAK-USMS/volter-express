@@ -1,8 +1,20 @@
 import React, { useState } from 'react';
 import blueTruckImage from '../assets/bluetruck.jpg';
 
-const SendProductModal = () => {
+const SendProductModal = ({ data }) => {
     const [step, setStep] = useState(1);
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        password: '',
+        phone: '',
+        streetName: '',
+        city: '',
+        country: '',
+        productId: '',
+        location: '',
+        quantity: '',
+    });
 
     const nextStep = () => {
         setStep(step + 1);
@@ -10,6 +22,11 @@ const SendProductModal = () => {
 
     const prevStep = () => {
         setStep(step - 1);
+    };
+
+    const handleChange = (e) => {
+        const { id, value } = e.target;
+        setFormData({ ...formData, [id]: value });
     };
 
     const trucks = [
@@ -157,12 +174,17 @@ const SendProductModal = () => {
                                     <label htmlFor="productId" className="form-label">
                                         Product ID
                                     </label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
+                                    <select
+                                        className="form-select"
                                         id="productId"
-                                        placeholder="Enter Product ID"
-                                    />
+                                        value={formData.productId}
+                                        onChange={handleChange}
+                                    >
+                                        <option>Select Product ID</option>
+                                        {data.map(item => (
+                                            <option key={item.id} value={item.id}>{item.id}</option>
+                                        ))}
+                                    </select>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="quantity" className="form-label">
@@ -172,18 +194,9 @@ const SendProductModal = () => {
                                         type="number"
                                         className="form-control"
                                         id="quantity"
+                                        value={formData.quantity}
+                                        onChange={handleChange}
                                         placeholder="Enter Quantity"
-                                    />
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="weight" className="form-label">
-                                        Weight
-                                    </label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        id="weight"
-                                        placeholder="Enter Weight"
                                     />
                                 </div>
                             </form>
@@ -251,7 +264,6 @@ const SendProductModal = () => {
                                     ))}
                                 </div>
                             </form>
-
                         )}
                     </div>
                     <div className="modal-footer">
@@ -277,7 +289,6 @@ const SendProductModal = () => {
                 </div>
             </div>
         </div >
-        
     );
 };
 
