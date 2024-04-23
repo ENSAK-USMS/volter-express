@@ -122,7 +122,7 @@ const MyChart = () => {
         </div>
         <div className="col-3">
           <div className="card-shadow content mt-4 rounded-4 px-4 py-5">
-            <h4>Trucks available</h4>
+            <h4>product about to expire</h4>
             <h5 className='fw-bold'>74</h5>
           </div>
         </div>
