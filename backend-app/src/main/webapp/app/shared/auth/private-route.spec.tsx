@@ -57,7 +57,7 @@ describe('private-route component', () => {
         },
       },
     );
-    expect(container.innerHTML).toMatch(/<div class="insufficient-authority"><div class="alert alert-danger">.*<\/div><\/div>/);
+    expect(container.innerHTML).toMatch(/<div className="insufficient-authority"><div className="alert alert-danger">.*<\/div><\/div>/);
   });
 
   it('Should render a route for the component provided when authenticated', () => {

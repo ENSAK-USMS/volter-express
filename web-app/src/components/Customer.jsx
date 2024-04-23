@@ -50,14 +50,14 @@ const CustomersTable = () => {
     }, []);
 
     return (
-        <section class="home-section p-3 text-capitalize">
+        <section className="home-section p-3 text-capitalize">
             <div className="d-flex justify-content-between">
-                <div class="text my-3 col-6">
+                <div className="text my-3 col-6">
                     Customer management
                 </div>
                 <div className="col-6 text-end">
-                    <button type="button" class="btn btn-success px-5 py-2 rounded-3 m-1" data-bs-toggle="modal" data-bs-target="#addModal" data-bs-dismiss="modal">
-                        <i class="ri-add-large-line"></i>
+                    <button type="button" className="btn btn-success px-5 py-2 rounded-3 m-1" data-bs-toggle="modal" data-bs-target="#addModal" data-bs-dismiss="modal">
+                        <i className="ri-add-large-line"></i>
                         Create
                     </button>
                 </div>
