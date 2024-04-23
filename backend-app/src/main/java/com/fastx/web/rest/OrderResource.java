@@ -178,4 +178,11 @@ public class OrderResource {
         return ResponseEntity.ok().body(orders);
     }
 
+    // order with less than 10 days to expire
+    @GetMapping("/expiring")
+    public ResponseEntity<Number> getOrdersExpiring() {
+        Number orders = orderService.getOrdersExpiring();
+        return ResponseEntity.ok().body(orders);
+    }
+
 }
