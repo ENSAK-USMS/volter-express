@@ -1,25 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import Modal from '../../components/Modal';
-
-function LocationMarker({ setLocation }) {
-    useMapEvents({
-        click: e => {
-            const { lat, lng } = e.latlng;
-            setLocation([lat, lng]); // Update parent component's state
-            document.getElementById('location').value = `Latitude: ${lat}, Longitude: ${lng}`;
-        }
-    });
-
-    return null;  // No need to return a Marker as we handle marker positioning separately
-}
+import L from 'leaflet';
+import markerIcon from 'leaflet/dist/images/marker-icon.png';
+import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
 export default function SignUp() {
-    const [position, setPosition] = useState([51.505, -0.09]);
+    const [position, setPosition] = useState([34.020882, -6.841650]); // Initial position set to Rabat
     const [modalVisible, setModalVisible] = useState(false);
 
-    // Effect to monitor modal visibility
     useEffect(() => {
         const modal = document.getElementById('mapModal');
         const modalListener = () => setModalVisible(true);
@@ -30,12 +20,26 @@ export default function SignUp() {
         };
     }, []);
 
+    const handleMapClick = (e) => {
+        const { lat, lng } = e.latlng;
+        setPosition([lat, lng]);
+        setModalVisible(false);
+        document.getElementById('location').value = `Latitude: ${lat}, Longitude: ${lng}`;
+    };
+
+    // Define custom marker icon
+    const customMarkerIcon = new L.Icon({
+        iconUrl: markerIcon,
+        shadowUrl: markerShadow,
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
     return (
         <>
             <Modal />
-            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mapModal">
-                Show Map
-            </button>
             <div className="modal fade" id="mapModal" tabIndex="-1">
                 <div className="modal-dialog modal-dialog-centered modal-xl">
                     <div className="modal-content rounded-4 px-2">
@@ -46,13 +50,13 @@ export default function SignUp() {
                             </div>
                             {modalVisible && (
                                 <div style={{ height: '500px', width: '100%' }}>
-                                    <MapContainer center={position} zoom={13} style={{ height: '100%', width: '100%' }} scrollWheelZoom={true}>
+                                    <MapContainer center={position} zoom={13} style={{ height: '100%', width: '100%' }} scrollWheelZoom={true} onClick={handleMapClick}>
                                         <TileLayer
-                                            url='http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}'
+                                            url='https://tile.openstreetmap.org/{z}/{x}/{y}.png'
                                             maxZoom={20}
                                             subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
                                         />
-                                        <LocationMarker setLocation={setPosition} />
+                                        {position && <Marker position={position} icon={customMarkerIcon} />}
                                     </MapContainer>
                                 </div>
                             )}
@@ -60,6 +64,6 @@ export default function SignUp() {
                     </div>
                 </div>
             </div>
-        </>
-    );
+        </>
+    );
 }
