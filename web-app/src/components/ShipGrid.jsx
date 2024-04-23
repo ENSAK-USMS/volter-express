@@ -35,7 +35,7 @@ const CustomersTable = () => {
                         headerName: "Actions",
                         cellRenderer: function (params) {
                             return `<div class="btn-group" role="group">
-                                    <button type="button" class="btn mx-1 rounded-2 btn-sm btn-light border-2 border border-dark" data-bs-toggle="modal" data-bs-target="#route" data-bs-dismiss="modal" title="Voir le Professeur"><i class="ri-route-fill"></i></button>
+                                    <button type="button" class="btn mx-1 rounded-2 btn-sm btn-light border-2 border border-dark" data-bs-toggle="modal" data-bs-target="#livetrack" data-bs-dismiss="modal"><i class="ri-route-fill"></i></button>
                                   </div>`;
                         },
                         filter: false,
@@ -66,12 +66,6 @@ const CustomersTable = () => {
             <div className="d-flex justify-content-between px-4 pt-4">
                 <div className="text my-3 col-6">
                     Orders management
-                </div>
-                <div className="col-6 text-end">
-                    <button type="button" className="btn btn-success px-5 py-2 rounded-3 m-1" data-bs-toggle="modal" data-bs-target="#ship" data-bs-dismiss="modal">
-                        <i className="ri-add-large-line"></i>
-                        Create
-                    </button>
                 </div>
             </div>
             <div className="col-md-12 d-flex flex-column">
