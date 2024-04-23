@@ -54,5 +54,5 @@ public interface DeliveryTruckService {
      */
     void delete(String id);
 
-    List<Float> getCurrentLocation();
+    List<Float> getCurrentLocation(String id);
 }

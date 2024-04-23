@@ -177,11 +177,11 @@ public class DeliveryTruckResource {
 
     // add server sent event to get delivery truck location when it is updated
     @GetMapping(path="/delivery-trucks/{id}/location", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<List<Float>> streamFlux() {
+    public Flux<List<Float>> streamFlux(@PathVariable("id") String id) {
         return Flux.interval(Duration.ofSeconds(2))
             .map(tick -> {
                 // Get the current location of the truck
-                List<Float> location = deliveryTruckService.getCurrentLocation();
+                List<Float> location = deliveryTruckService.getCurrentLocation(id);
                 return location;
             });
     }

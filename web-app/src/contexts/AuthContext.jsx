@@ -56,7 +56,7 @@ const AuthProvider = ({ children }) => {
         if (accessToken) {
           setSession(accessToken);
           console.log("i m here ", accessToken);
-          const response = await axios.get("/users/me");
+          const response = await axios.get("/account");
           console.log(response.data);
 
           dispatch({
@@ -109,6 +109,7 @@ const AuthProvider = ({ children }) => {
       setSession(token);
   
       const userData = await axios.get("/account");
+      console.log(userData);
   
       dispatch({
         type: "LOGIN",
