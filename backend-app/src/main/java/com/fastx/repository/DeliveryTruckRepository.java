@@ -1,6 +1,9 @@
 package com.fastx.repository;
 
 import com.fastx.domain.DeliveryTruck;
+
+import java.util.List;
+
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,4 +12,6 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface DeliveryTruckRepository extends MongoRepository<DeliveryTruck, String> {}
+public interface DeliveryTruckRepository extends MongoRepository<DeliveryTruck, String> {
+
+    List<Float> getCurrentLocation();}

@@ -86,4 +86,9 @@ public class DeliveryTruckServiceImpl implements DeliveryTruckService {
         log.debug("Request to delete DeliveryTruck : {}", id);
         deliveryTruckRepository.deleteById(id);
     }
+
+    @Override
+    public List<Float> getCurrentLocation() {
+        return deliveryTruckRepository.getCurrentLocation();
+    }
 }

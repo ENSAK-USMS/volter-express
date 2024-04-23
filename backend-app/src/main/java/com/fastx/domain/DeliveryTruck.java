@@ -2,6 +2,8 @@ package com.fastx.domain;
 
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -26,7 +28,7 @@ public class DeliveryTruck implements Serializable {
     private Float capacityKg;
 
     @Field("current_location")
-    private Integer currentLocation;
+    private  List<Float> currentLocation;
 
     @Field("status")
     private String status;
@@ -81,16 +83,16 @@ public class DeliveryTruck implements Serializable {
         this.capacityKg = capacityKg;
     }
 
-    public Integer getCurrentLocation() {
+    public List<Float> getCurrentLocation() {
         return this.currentLocation;
     }
 
-    public DeliveryTruck currentLocation(Integer currentLocation) {
+    public DeliveryTruck currentLocation(List<Float> currentLocation) {
         this.setCurrentLocation(currentLocation);
         return this;
     }
 
-    public void setCurrentLocation(Integer currentLocation) {
+    public void setCurrentLocation(List<Float> currentLocation) {
         this.currentLocation = currentLocation;
     }
 
