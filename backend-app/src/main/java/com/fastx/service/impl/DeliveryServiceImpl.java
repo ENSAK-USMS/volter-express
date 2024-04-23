@@ -49,9 +49,6 @@ public class DeliveryServiceImpl implements DeliveryService {
                 if (delivery.getOrderId() != null) {
                     existingDelivery.setOrderId(delivery.getOrderId());
                 }
-                if (delivery.getDeliveryAddressId() != null) {
-                    existingDelivery.setDeliveryAddressId(delivery.getDeliveryAddressId());
-                }
                 if (delivery.getDeliveryRouteId() != null) {
                     existingDelivery.setDeliveryRouteId(delivery.getDeliveryRouteId());
                 }

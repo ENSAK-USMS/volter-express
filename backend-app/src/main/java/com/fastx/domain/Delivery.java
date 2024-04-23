@@ -24,8 +24,6 @@ public class Delivery implements Serializable {
     @Field("order_id")
     private Long orderId;
 
-    @Field("delivery_address_id")
-    private Long deliveryAddressId;
 
     @Field("delivery_route_id")
     private Long deliveryRouteId;
@@ -83,18 +81,6 @@ public class Delivery implements Serializable {
         this.orderId = orderId;
     }
 
-    public Long getDeliveryAddressId() {
-        return this.deliveryAddressId;
-    }
-
-    public Delivery deliveryAddressId(Long deliveryAddressId) {
-        this.setDeliveryAddressId(deliveryAddressId);
-        return this;
-    }
-
-    public void setDeliveryAddressId(Long deliveryAddressId) {
-        this.deliveryAddressId = deliveryAddressId;
-    }
 
     public Long getDeliveryRouteId() {
         return this.deliveryRouteId;
@@ -187,7 +173,6 @@ public class Delivery implements Serializable {
             "id=" + getId() +
             ", deliveryDate='" + getDeliveryDate() + "'" +
             ", orderId=" + getOrderId() +
-            ", deliveryAddressId=" + getDeliveryAddressId() +
             ", deliveryRouteId=" + getDeliveryRouteId() +
             ", estimatedTravelTime=" + getEstimatedTravelTime() +
             ", deliveryTruckId=" + getDeliveryTruckId() +
