@@ -1,6 +1,10 @@
 package com.fastx.repository;
 
 import com.fastx.domain.Order;
+
+import java.util.List;
+
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,4 +13,6 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface OrderRepository extends MongoRepository<Order, String> {}
+public interface OrderRepository extends MongoRepository<Order, String> {
+
+    List<Order> findByStatus(Pageable pageable,String string);}

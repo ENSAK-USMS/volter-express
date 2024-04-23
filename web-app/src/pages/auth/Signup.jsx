@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import L from 'leaflet';
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+// leaflet
+import L from 'leaflet';
 
 export default function SignUp() {
     const { login } = useAuth();

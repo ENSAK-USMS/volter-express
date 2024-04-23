@@ -1,51 +1,75 @@
 import React, { useEffect } from 'react';
-import Modal from '../components/Modal'
+import axios from "axios";
 
 const ProductsManagement = () => {
     useEffect(() => {
         // Function to generate sample data
-        function generateData(count) {
-            const data = [];
-            for (let i = 0; i < count; i++) {
-                data.push({
-                    product_id: i + 1,
-                    product_name: "Product " + (i + 1),
-                    price: "$" + Math.floor(Math.random() * 1000),
-                    stock: Math.floor(Math.random() * 100),
-                });
+        const fetchData = async () => {
+            try {
+                const res = await axios.get(
+                  "http://localhost:8080/api/orders/warehouse?page=0&size=20"
+                );
+                console.log(res);
+                return res.data;
+            } catch (error) {
+                console.error('Error fetching data:', error);
             }
-            return data;
-        }
+        };
 
         // Initialize Ag-Grid instance
         const initGrid = () => {
             const gridOptions = {
-                rowData: generateData(100), // Generate sample data
-                columnDefs: [
-                    { field: "product_id", headerName: "Product ID", filter: true, sortable: true, floatingFilter: true, width: 150 },
-                    { field: "product_name", headerName: "Product Name", filter: true, sortable: true, floatingFilter: true },
-                    { field: "price", headerName: "Price", filter: true, sortable: true, floatingFilter: true },
-                    { field: "stock", headerName: "Stock", filter: true, sortable: true, floatingFilter: true },
-                    {
-                        headerName: "Actions",
-                        cellRenderer: function (params) {
-                            return `<div class="btn-group" role="group">
+              rowData: fetchData(), // Generate sample data
+              columnDefs: [
+                {
+                  field: "id",
+                  headerName: "Product ID",
+                  filter: true,
+                  sortable: true,
+                  floatingFilter: true,
+                  width: 150,
+                },
+                {
+                  field: "totalAmount",
+                  headerName: "Total Amount",
+                  filter: true,
+                  sortable: true,
+                  floatingFilter: true,
+                },
+                {
+                  field: "weightKg",
+                  headerName: "Weight (kg)",
+                  filter: true,
+                  sortable: true,
+                  floatingFilter: true,
+                },
+                {
+                  field: "expirationDate",
+                  headerName: "Expiration Date",
+                  filter: true,
+                  sortable: true,
+                  floatingFilter: true,
+                },
+                {
+                  headerName: "Actions",
+                  cellRenderer: function (params) {
+                    return `<div class="btn-group" role="group">
                                         <button type="button" class="btn mx-1 rounded-2 btn-sm btn-light border-2 border border-dark" data-bs-toggle="modal" data-bs-target="#send" data-bs-dismiss="modal"><i class="ri-send-plane-fill"></i> Ship</button>
                                     </div>`;
-                        },
-                        filter: false,
-                        sortable: false,
-                        autoHeight: true,
-                        cellStyle: { textAlign: "center" }
-                    }
-                ],
-                pagination: true,
-                removePivotHeaderRowWhenSingleValueColumn: true,
-                sideBar: true,
-                paginationPageSize: 20,
-                defaultColDef: {
-                    flex: 1,
-                }
+                  },
+                  filter: false,
+                  sortable: false,
+                  autoHeight: true,
+                  cellStyle: { textAlign: "center" },
+                },
+              ],
+              pagination: true,
+              removePivotHeaderRowWhenSingleValueColumn: true,
+              sideBar: true,
+              paginationPageSize: 20,
+              defaultColDef: {
+                flex: 1,
+              },
             };
 
             const gridDiv = document.querySelector("#productsGrid");
@@ -160,7 +184,6 @@ const ProductsManagement = () => {
                     </div>
                 </div>
             </div>
-        <Modal />
         </>
     );
 };
