@@ -1,6 +1,9 @@
 package com.fastx.repository;
 
 import com.fastx.domain.Delivery;
+
+import java.util.List;
+
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,4 +12,8 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface DeliveryRepository extends MongoRepository<Delivery, String> {}
+public interface DeliveryRepository extends MongoRepository<Delivery, String> {
+
+    Delivery findDeliveryByOrderTruckingNumber(Long trackingNumber);
+
+}

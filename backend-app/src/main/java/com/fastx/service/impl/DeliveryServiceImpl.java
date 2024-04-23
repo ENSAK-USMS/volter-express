@@ -1,8 +1,12 @@
 package com.fastx.service.impl;
 
 import com.fastx.domain.Delivery;
+import com.fastx.domain.DeliveryTruck;
 import com.fastx.repository.DeliveryRepository;
+import com.fastx.repository.DeliveryTruckRepository;
 import com.fastx.service.DeliveryService;
+
+import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,9 +23,11 @@ public class DeliveryServiceImpl implements DeliveryService {
     private final Logger log = LoggerFactory.getLogger(DeliveryServiceImpl.class);
 
     private final DeliveryRepository deliveryRepository;
+    private final DeliveryTruckRepository truckRepository;
 
-    public DeliveryServiceImpl(DeliveryRepository deliveryRepository) {
+    public DeliveryServiceImpl(DeliveryRepository deliveryRepository, DeliveryTruckRepository truckRepository) {
         this.deliveryRepository = deliveryRepository;
+        this.truckRepository = truckRepository;
     }
 
     @Override
@@ -86,5 +92,16 @@ public class DeliveryServiceImpl implements DeliveryService {
     public void delete(String id) {
         log.debug("Request to delete Delivery : {}", id);
         deliveryRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Float> getTruckLocationByTrackingNumber(Long trackingNumber) {
+        Delivery delivery = deliveryRepository.findDeliveryByOrderTruckingNumber(trackingNumber);
+
+        // get truck id
+        Long truckId = delivery.getDeliveryTruckId();
+
+        // get truck location
+        return truckRepository.getTruckLocationById(truckId);
     }
 }

@@ -1,6 +1,8 @@
 package com.fastx.service;
 
 import com.fastx.domain.Delivery;
+
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -55,4 +57,6 @@ public interface DeliveryService {
      * @param id the id of the entity.
      */
     void delete(String id);
+
+    List<Float> getTruckLocationByTrackingNumber(Long trackingNumber);
 }
