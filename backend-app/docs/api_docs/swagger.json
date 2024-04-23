@@ -1,0 +1,1162 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"UpdatePasswordRequestBody": {
+				"properties": {
+					"email": {
+						"type": "string"
+					},
+					"resetKey": {
+						"type": "string"
+					},
+					"password": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"email",
+					"resetKey",
+					"password"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ForgotPasswordRequestBody": {
+				"properties": {
+					"email": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"email"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Pick_RoleType.Exclude_keyofRoleType.name__": {
+				"properties": {
+					"authorities": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"restrictions": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"authorities",
+					"restrictions"
+				],
+				"type": "object",
+				"description": "From T, pick a set of properties whose keys are in the union K"
+			},
+			"Omit_RoleType.name_": {
+				"$ref": "#/components/schemas/Pick_RoleType.Exclude_keyofRoleType.name__",
+				"description": "Construct a type with the properties of T except for those in type K."
+			},
+			"RoleType": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"authorities": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"restrictions": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"name",
+					"authorities",
+					"restrictions"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {
+			"jwt": {
+				"type": "apiKey",
+				"name": "access_token",
+				"in": "header"
+			},
+			"apiKey": {
+				"type": "apiKey",
+				"name": "x-api-key",
+				"in": "header"
+			}
+		}
+	},
+	"info": {
+		"title": "student-workflow-api",
+		"version": "1.0.0",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {
+			"name": "NFS-Team"
+		}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/api/auth/login": {
+			"post": {
+				"operationId": "Login",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"user": {},
+										"accessToken": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"user",
+										"accessToken"
+									],
+									"type": "object"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "- Please provide email and password\n        \n- Invalid email or password\n        \n- You haven't set a password yet. Please login with GitHub and set a password from your profile page."
+					},
+					"401": {
+						"description": "Invalid email or password"
+					},
+					"403": {
+						"description": "Your account has been banned. Please contact the admin for more information."
+					}
+				},
+				"tags": [
+					"Authentication"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": false,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"password": {
+										"type": "string"
+									},
+									"email": {
+										"type": "string"
+									}
+								},
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/auth/signup": {
+			"post": {
+				"operationId": "Signup",
+				"responses": {
+					"201": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"user": {},
+										"accessToken": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"user",
+										"accessToken"
+									],
+									"type": "object"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "- Please provide a password\n        \n- Please provide an email\n        \n- Please provide a name\n        "
+					},
+					"500": {
+						"description": "User role does not exist. Please contact the admin."
+					}
+				},
+				"tags": [
+					"Authentication"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": false,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"password": {
+										"type": "string"
+									},
+									"location": {
+										"properties": {
+											"coordinates": {
+												"items": {
+													"type": "number",
+													"format": "double"
+												},
+												"type": "array"
+											}
+										},
+										"required": [
+											"coordinates"
+										],
+										"type": "object"
+									},
+									"streetName": {
+										"type": "string"
+									},
+									"city": {
+										"type": "string"
+									},
+									"country": {
+										"type": "string"
+									},
+									"companyCountry": {
+										"type": "string"
+									},
+									"companyPostalCode": {
+										"type": "string"
+									},
+									"companyCity": {
+										"type": "string"
+									},
+									"companyAddress": {
+										"type": "string"
+									},
+									"companyName": {
+										"type": "string"
+									},
+									"phone": {
+										"type": "string"
+									},
+									"email": {
+										"type": "string"
+									},
+									"name": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"location",
+									"phone",
+									"email",
+									"name"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/auth/refreshToken": {
+			"get": {
+				"operationId": "TokenRefres",
+				"responses": {
+					"204": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"message": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"message"
+									],
+									"type": "object"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Invalid refresh token"
+					}
+				},
+				"tags": [
+					"Authentication"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/api/auth/logout": {
+			"get": {
+				"operationId": "Logout",
+				"responses": {
+					"204": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"message": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"message"
+									],
+									"type": "object"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Please provide access token"
+					}
+				},
+				"tags": [
+					"Authentication"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/api/auth/activate": {
+			"get": {
+				"operationId": "ActivateAccount",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"user": {}
+									},
+									"required": [
+										"user"
+									],
+									"type": "object"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No content"
+					},
+					"400": {
+						"description": "- Please provide activation key\n        \n- Please provide user id\n        \n- Please provide a valid user id"
+					},
+					"404": {
+						"description": "User does not exist"
+					},
+					"409": {
+						"description": "User is already active"
+					}
+				},
+				"tags": [
+					"Authentication"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "id",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "activationKey",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/api/password-management/update-password": {
+			"post": {
+				"operationId": "UpdatePassword",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"user": {},
+										"token": {
+											"properties": {
+												"refreshToken": {
+													"type": "string"
+												},
+												"accessToken": {
+													"type": "string"
+												}
+											},
+											"required": [
+												"refreshToken",
+												"accessToken"
+											],
+											"type": "object"
+										}
+									},
+									"required": [
+										"user",
+										"token"
+									],
+									"type": "object"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "- Invalid email format\n        \n- Please provide reset key \n        \n- Invalid reset key"
+					},
+					"404": {
+						"description": "User with this email does not exist"
+					}
+				},
+				"tags": [
+					"Password Management"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdatePasswordRequestBody"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/password-management/forgot-password": {
+			"post": {
+				"operationId": "ForgotPassword",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"message": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"message"
+									],
+									"type": "object"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "- Please provide email.\n        \n- Invalid email format."
+					},
+					"404": {
+						"description": "User with this email does not exist"
+					}
+				},
+				"tags": [
+					"Password Management"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ForgotPasswordRequestBody"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/admin/authorize-or-restrict/{userId}": {
+			"put": {
+				"operationId": "AuthorizeOrRestrict",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"400": {
+						"description": "- One or many actions are invalid in the authorities array.\n         \n- One or many actions are invalid in the restrictions array.\n         \n- You cannot change your own authorities or restrictions.\n         \n- No user found with this id.\n         \n- User is a super admin.\n         "
+					}
+				},
+				"tags": [
+					"Admin"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Omit_RoleType.name_"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/admin/ban-user/{userId}": {
+			"put": {
+				"operationId": "BanUser",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"400": {
+						"description": "\n         - You cannot ban yourself.\n         \n- User is already banned.\n         \n- You cannot ban a super admin.\n         \n- You cannot ban an admin"
+					},
+					"404": {
+						"description": " No user found with this id"
+					}
+				},
+				"tags": [
+					"Admin"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/admin/unban-user/{userId}": {
+			"put": {
+				"operationId": "UnbanUser",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"400": {
+						"description": "- You cannot unban yourself.\n         \n- User is not banned."
+					},
+					"404": {
+						"description": "No user found with this id"
+					}
+				},
+				"tags": [
+					"Admin"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/admin/role": {
+			"post": {
+				"operationId": "CreateRole",
+				"responses": {
+					"201": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"400": {
+						"description": "Role already exists"
+					}
+				},
+				"tags": [
+					"Admin"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/RoleType"
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "GetRoles",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Admin"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": []
+			}
+		},
+		"/admin/role/{name}": {
+			"get": {
+				"operationId": "GetRole",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Admin"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "name",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"delete": {
+				"operationId": "DeleteRole",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Admin"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "name",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"put": {
+				"operationId": "UpdateRole",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Admin"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "name",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Omit_RoleType.name_"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/admin/assign-role/{name}/{userId}": {
+			"put": {
+				"operationId": "AssignRoleToUser",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"400": {
+						"description": "User already has this role"
+					},
+					"404": {
+						"description": "- No user found with this id.\n         \n- No role found with this name."
+					}
+				},
+				"tags": [
+					"Admin"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "name",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "path",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/admin/remove-role/{name}/{userId}": {
+			"put": {
+				"operationId": "RemoveRoleFromUser",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"400": {
+						"description": "User does not have this role"
+					},
+					"404": {
+						"description": "- No role found with this name.\n         \n- No user found with this id."
+					}
+				},
+				"tags": [
+					"Admin"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "name",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "path",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/super-admin/add-admin/{userId}": {
+			"put": {
+				"operationId": "AddAdmin",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"400": {
+						"description": "User is already an admin"
+					},
+					"404": {
+						"description": "No user found with this id"
+					},
+					"500": {
+						"description": "Error in base roles, please contact an admin"
+					}
+				},
+				"tags": [
+					"Super Admin"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/super-admin/remove-admin/{userId}": {
+			"put": {
+				"operationId": "RemoveAdmin",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"400": {
+						"description": "- You cannot remove yourself as an admin.\n         \n- User is not an admin.\n    "
+					},
+					"404": {
+						"description": "No user found with this id"
+					},
+					"500": {
+						"description": "Error in base roles, please contact an admin"
+					}
+				},
+				"tags": [
+					"Super Admin"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/super-admin/add-super-admin/{userId}": {
+			"put": {
+				"operationId": "AddSuperAdmin",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"400": {
+						"description": "- You cannot make yourself a super admin.\n         \n- User is already a super admin"
+					},
+					"404": {
+						"description": "No user found with this id"
+					}
+				},
+				"tags": [
+					"Super Admin"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/super-admin/remove-super-admin/{userId}": {
+			"put": {
+				"operationId": "RemoveSuperAdmin",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"400": {
+						"description": "- You cannot remove yourself as a super admin.\n         \n- User is not a super admin."
+					},
+					"404": {
+						"description": "No user found with this id"
+					}
+				},
+				"tags": [
+					"Super Admin"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/api/users/me": {
+			"get": {
+				"operationId": "GetMe",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					}
+				},
+				"tags": [
+					"User"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": []
+			},
+			"delete": {
+				"operationId": "DeleteMe",
+				"responses": {
+					"204": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"message": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"message"
+									],
+									"type": "object"
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					}
+				},
+				"tags": [
+					"User"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": []
+			},
+			"patch": {
+				"operationId": "UpdateMe",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"400": {
+						"description": "- This route is not for role updates. Please use /updateRole\n         \n- This route is not for password updates. Please use auth/updateMyPassword"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"404": {
+						"description": "<b>No document found with that ID</b>"
+					}
+				},
+				"tags": [
+					"User"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": []
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	],
+	"tags": [
+		{
+			"name": "GitHub"
+		}
+	]
+}

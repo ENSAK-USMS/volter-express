@@ -6,7 +6,7 @@ const AboutUs = () => {
 <div className="container d-flex justify-content-center align-items-center mb-5 mt-4">
             <div className="card card-shadow content p-5 rounded-4">
                 <div className="card-body">
-                    <h2 className="card-title fw-bold mb-5">About FastX AU</h2>
+                    <h2 className="card-title mb-5">About FastX AU</h2>
                     <div className="row">
                         <div className="col-md-6">
                             <p className="card-text mb-4 text-justify">

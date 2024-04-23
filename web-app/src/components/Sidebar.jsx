@@ -35,7 +35,7 @@ function base() {
                         <span className="tooltip">Customer</span>
                     </li>
                     <li>
-                        <a href="trucks">
+                        <a href="truck">
                             <i className="ri-truck-fill"></i>
                             <span className="links_name">Truck</span>
                         </a>
