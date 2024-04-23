@@ -122,13 +122,13 @@ const MyChart = () => {
         </div>
         <div className="col-3">
           <div className="card-shadow content mt-4 rounded-4 px-4 py-5">
-            <h4>product about to expire</h4>
+            <h4>expired products</h4>
             <h5 className='fw-bold'>74</h5>
           </div>
         </div>
         <div className="col-8">
           <div className="card-shadow mt-4 content rounded-4 p-5 flex-fill">
-            <canvas ref={barChart} width="400" height="280"></canvas>
+            <canvas ref={barChart} width="400" height="300"></canvas>
           </div>
         </div>
         <div className="col-4  mt-4">
