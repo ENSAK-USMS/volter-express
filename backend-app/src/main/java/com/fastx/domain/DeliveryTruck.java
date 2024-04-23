@@ -20,9 +20,6 @@ public class DeliveryTruck implements Serializable {
     @Id
     private String id;
 
-    @NotNull
-    @Field("delivery_truck_id")
-    private Long deliveryTruckId;
 
     @Field("capacity_kg")
     private Float capacityKg;
@@ -57,18 +54,8 @@ public class DeliveryTruck implements Serializable {
         this.id = id;
     }
 
-    public Long getDeliveryTruckId() {
-        return this.deliveryTruckId;
-    }
 
-    public DeliveryTruck deliveryTruckId(Long deliveryTruckId) {
-        this.setDeliveryTruckId(deliveryTruckId);
-        return this;
-    }
 
-    public void setDeliveryTruckId(Long deliveryTruckId) {
-        this.deliveryTruckId = deliveryTruckId;
-    }
 
     public Float getCapacityKg() {
         return this.capacityKg;
@@ -172,7 +159,6 @@ public class DeliveryTruck implements Serializable {
     public String toString() {
         return "DeliveryTruck{" +
             "id=" + getId() +
-            ", deliveryTruckId=" + getDeliveryTruckId() +
             ", capacityKg=" + getCapacityKg() +
             ", currentLocation=" + getCurrentLocation() +
             ", status='" + getStatus() + "'" +

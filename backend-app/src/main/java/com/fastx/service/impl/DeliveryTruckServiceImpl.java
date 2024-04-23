@@ -42,9 +42,6 @@ public class DeliveryTruckServiceImpl implements DeliveryTruckService {
         return deliveryTruckRepository
             .findById(deliveryTruck.getId())
             .map(existingDeliveryTruck -> {
-                if (deliveryTruck.getDeliveryTruckId() != null) {
-                    existingDeliveryTruck.setDeliveryTruckId(deliveryTruck.getDeliveryTruckId());
-                }
                 if (deliveryTruck.getCapacityKg() != null) {
                     existingDeliveryTruck.setCapacityKg(deliveryTruck.getCapacityKg());
                 }
@@ -88,7 +85,14 @@ public class DeliveryTruckServiceImpl implements DeliveryTruckService {
     }
 
     @Override
-    public List<Float> getCurrentLocation() {
-        return deliveryTruckRepository.getCurrentLocation();
+    public List<Float> getCurrentLocation(String id){
+        Optional<DeliveryTruck> t =  deliveryTruckRepository.findById(id);
+        if (t.isPresent()) {
+            DeliveryTruck truck = t.get();
+            return truck.getCurrentLocation();
+        } else {
+            throw new IllegalArgumentException("Delivery truck not found");
+        }
+
     }
 }
