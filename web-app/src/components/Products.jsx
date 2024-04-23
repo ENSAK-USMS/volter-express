@@ -201,7 +201,12 @@ const ProductsManagement = () => {
       </div>
 
       <SendProductModal />
-      <RouteMap />
+      <RouteMap
+        waypoints={[
+          L.latLng(51.5, -0.09), 
+          L.latLng(51.51, -0.1) 
+        ]}
+      />
       <div className="modal fade" id="mapModal" tabIndex="-1">
         <div className="modal-dialog modal-dialog-centered modal-xl">
           <div className="modal-content rounded-4 px-2">
