@@ -185,4 +185,6 @@ public class DeliveryTruckResource {
                 return location;
             });
     }
+
+
 }

@@ -174,4 +174,24 @@ public class DeliveryResource {
         deliveryService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id)).build();
     }
+
+
+    /**
+     * {@code GET /delivery-trucks/location/{trackingNumber}} : get the location of
+     * the truck by tracking number.
+     *
+     * @param trackingNumber the tracking number of the truck to retrieve the
+     *                       location.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the location of the truck, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/location/{trackingNumber}")
+    public ResponseEntity<List<Float>> getTruckLocationByTrackingNumber(
+            @PathVariable("trackingNumber") Long trackingNumber) {
+        log.debug("REST request to get truck location by tracking number: {}", trackingNumber);
+        List<Float> location = deliveryService.getTruckLocationByTrackingNumber(trackingNumber);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(location));
+    }
+
+
 }

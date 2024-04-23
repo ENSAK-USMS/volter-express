@@ -17,4 +17,7 @@ public interface DeliveryTruckRepository extends MongoRepository<DeliveryTruck, 
 
     // get truck by id and current location
     Optional<DeliveryTruck> findById(String id);
+//    getTruckLocationById
+    // get truck location by id
+    List<Float> getTruckLocationById(Long id);
 }
