@@ -10,6 +10,9 @@ import ShipTrack from './components/Shiptrack'
 import AboutUs from './components/AboutUs'
 import Analytics from './components/Analytics'
 import Products from './components/Products'
+import Customer from './components/Customer'
+import Order from './components/Order'
+import Truck from './components/Truck'
 import Faqs from './components/Faqs'
 // pages
 
@@ -21,7 +24,7 @@ import Home from "./pages/Home/Home";
 
 const Router = () => {
   const element = useRoutes([
-    {
+    { path: "/admin",
       element: (
         //<AuthGuard>
         //  <Root />
@@ -30,7 +33,10 @@ const Router = () => {
         //</AuthGuard>
       ),
       children: [
-        { path: "/admin", element: <Dashboard /> },
+        { path: "dashboard", element: <Dashboard /> },
+        { path: "order", element: <Order /> },
+        { path: "customer", element: <Customer /> },
+        { path: "truck", element: <Truck /> },
       ],
     },
     

@@ -72,7 +72,7 @@ const Footer = () => {
       </section>
 
       <div className="text-center p-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
-        © 2021 FastX. All rights reserved.
+        © 2024 FastX. All rights reserved.
       </div>
     </footer>
   );
