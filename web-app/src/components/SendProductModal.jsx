@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import yellowTruckImage from '../assets/yellowtruck.jpg';
-import redTruckImage from '../assets/redtruck.jpg';
 import blueTruckImage from '../assets/bluetruck.jpg';
 
 const SendProductModal = () => {
@@ -15,26 +13,11 @@ const SendProductModal = () => {
     };
 
     const trucks = [
-        {
-            id: 1,
-            image: yellowTruckImage,
-            distance: '10 km',
-            time: '1 hour',
-        },
-        {
-            id: 2,
-            image: redTruckImage,
-            distance: '15 km',
-            time: '1.5 hours',
-        },
-        {
-            id: 3,
-            image: blueTruckImage,
-            distance: '20 km',
-            time: '2 hours',
-        },
+        { id: 1 },
+        { id: 2 },
+        { id: 3 },
+        // Add more trucks as needed
     ];
-
 
     return (
         <div className="modal fade" id="send">
@@ -255,16 +238,12 @@ const SendProductModal = () => {
                                     </div>
                                 </div>
                                 <h5>Truck Selection</h5>
-                                <div className="row">
+                                <div className="row mt-3">
                                     {trucks.map((truck) => (
                                         <div key={truck.id} className="col-md-4 mb-3">
                                             <div className="card-shadow rounded-4 p-3">
-                                                <img src={truck.image} className="card-img-top" alt={`Truck ${truck.id}`} />
-                                                <div className="card-body py-3">
-                                                    <h5 className="card-text">Distance: {truck.distance}</h5>
-                                                    <h6 className="card-text">Time: {truck.time}</h6>
-                                                </div>
-                                                <div className="card-footer text-end">
+                                                <img src={blueTruckImage} className="card-img-top" alt={`Truck ${truck.id}`} />
+                                                <div className="card-footer text-center my-3">
                                                     <button type="button" className="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#redtruck" data-bs-dismiss="modal">Show route</button>
                                                 </div>
                                             </div>

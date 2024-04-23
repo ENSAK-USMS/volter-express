@@ -109,7 +109,11 @@ const ProductsManagement = () => {
   const [streetName, setStreetName] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
+  const [waypoints, setWaypoints] = useState([]);
 
+  const addWaypoint = (waypoint) => {
+    setWaypoints([...waypoints, waypoint]);
+  };
   const navigate = useNavigate();
 
   const handleSignUp = async () => {
@@ -152,8 +156,6 @@ const ProductsManagement = () => {
       modal.removeEventListener("shown.bs.modal", modalListener);
     };
   }, [setModalVisible, handleMapClick]);
-
-
 
   // Define custom marker icon
   const customMarkerIcon = new L.Icon({
@@ -199,8 +201,7 @@ const ProductsManagement = () => {
           </div>
         </div>
       </div>
-
-      <SendProductModal />
+      <SendProductModal addWaypoint={addWaypoint} />
       <RouteMap
         waypoints={[
           L.latLng(51.5, -0.09), 
