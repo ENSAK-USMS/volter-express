@@ -95,16 +95,20 @@ const AuthProvider = ({ children }) => {
     initialize();
   }, []);
 
-  const login = async ({ email, password, rememberMe }) => {
-    const response = await axios.post("/users/authenticate", {
-      email,
+  const login = async ({ username, password, rememberMe }) => {
+    console.log("username", username,"password", password);
+    let good = true;
+    const response = await axios.post("/authenticate", {
+      username,
       password,
     }).then(async (res) => {
-      const token = res.data.token;
+      const token = res.data.id_token;
+
+      console.log("token", token);
   
       setSession(token);
   
-      const userData = await axios.get("/users/me");
+      const userData = await axios.get("/account");
   
       dispatch({
         type: "LOGIN",
@@ -115,11 +119,15 @@ const AuthProvider = ({ children }) => {
     }).catch((err) => {
       console.log(err);
       // if unauthorized, log to console
-      if (err.error.statusCode === 401) {
+      if (err.status === 401) {
         console.log("Unauthorized");
       }
+      else {
+        console.log("Error: ", err);
+      }
+      good = false;
     });
-
+    return good;
   };
 
   const logout = async () => {

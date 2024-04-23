@@ -51,7 +51,7 @@ public class User extends AbstractAuditingEntity<String> implements Serializable
     @Indexed
     private String email;
 
-    private boolean activated = false;
+    private boolean activated = true;
 
     @Size(min = 2, max = 10)
     @Field("lang_key")

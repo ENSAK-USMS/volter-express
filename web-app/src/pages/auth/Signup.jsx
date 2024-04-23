@@ -5,7 +5,7 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
-
+import axios from "axios";
 export default function SignUp() {
     const [position, setPosition] = useState([34.020882, -6.841650]); // Initial position set to Rabat
     const [modalVisible, setModalVisible] = useState(false);
@@ -30,19 +30,26 @@ export default function SignUp() {
                 email,
                 password
             });
-            navigate("/login");
+            if (response.status === 200 || response.status==201)
+                navigate("/login");
+            else
+                console.error("Error:", response.data);
         } catch (error) {
             // Handle error
-            console.error(error);
+            if (error.response) {
+                // The request was made and the server responded with a status code
+                console.error("Server Error:", error.response.data);
+            } else if (error.request) {
+                // The request was made but no response was received
+                console.error("No response from server");
+            } else {
+                // Something happened in setting up the request that triggered an Error
+                console.error("Error:", error.message);
+            }
         }
     };
 
-    // Call handleSignUp when the signup form is submitted
-    // For example, if you have a form with an onSubmit event handler
-    // <form onSubmit={handleSignUp}>
-    //   ...
-    //   <button type="submit">Sign Up</button>
-    // </form>
+
 
     const handleMapClick = (e) => {
       const { lat, lng } = e.latlng;
@@ -92,7 +99,7 @@ export default function SignUp() {
                 <div className="container d-flex justify-content-center align-items-center vh-100">
                     <div className="card shadow p-5 rounded col-7 rounded-4">
                         <h2 className="text-center mb-4">Sign Up</h2>
-                        <form>
+                        <form onSubmit={(e) => e.preventDefault()}>
                             <div className="row">
                                 <div className="col-md-6">
                                     <div className="mb-3">
@@ -252,7 +259,7 @@ export default function SignUp() {
                                 </div>
                             </div>
                             <div className="d-grid mb-3">
-                                <button type="submit" className="btn btn-primary" onClick={handleSignUp}>
+                                <button className="btn btn-primary" onClick={handleSignUp}>
                                     Sign Up
                                 </button>
                             </div>

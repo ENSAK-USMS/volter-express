@@ -4,6 +4,7 @@ import com.fastx.domain.Order;
 import com.fastx.repository.OrderRepository;
 import com.fastx.service.OrderService;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
@@ -88,4 +89,16 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> getOrdersAtWarehouse(Pageable pageable) {
         return orderRepository.findByStatus(pageable,"At Wherehouse");
     }
+
+    // getOrdersExpiring order about to expire less 10 days
+    @Override
+    public Number getOrdersExpiring() {
+        // get all orders and then filter the ones that are about to expire less 10 days
+        List<Order> orders = orderRepository.findAll();
+        return orders.stream()
+                .filter(order -> order.getExpirationDate().plusSeconds(10 * 24 * 60 * 60 // Update the lambda expression
+                ).isBefore(Instant.now()))
+                .count();
+    }
+
 }

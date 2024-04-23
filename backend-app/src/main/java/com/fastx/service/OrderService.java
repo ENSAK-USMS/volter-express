@@ -59,4 +59,6 @@ public interface OrderService {
     void delete(String id);
 
     List<Order> getOrdersAtWarehouse(Pageable pageable);
+
+    Number getOrdersExpiring();
 }

@@ -3,6 +3,7 @@ import { useRoutes } from "react-router-dom";
 import Root from "./pages/core/Root";
 import RootDashboard from "./pages/core/RootDashboard";
 import Login from "./pages/auth/Login";
+import Login2 from "./pages/auth/Login2";
 import Singup from "./pages/auth/Signup";
 import ClientDashboard from './components/ClientDashboard'
 import Contact from './components/Contact'
@@ -24,12 +25,13 @@ import Home from "./pages/Home/Home";
 
 const Router = () => {
   const element = useRoutes([
-    { path: "/admin",
+    {
+      path: "/admin",
       element: (
         //<AuthGuard>
         //  <Root />
-          <RootDashboard />
-          
+        <RootDashboard />
+
         //</AuthGuard>
       ),
       children: [
@@ -39,20 +41,22 @@ const Router = () => {
         { path: "truck", element: <Truck /> },
       ],
     },
-    
-    { path: "/", element: <Root /> ,
-    children: [
-      { path: "/", element: <Home /> },
-      { path: "/login", element: <Login /> },
-      { path: "/signup", element: <Singup />},
-      { path: "/clientDashboard", element: <ClientDashboard />},
-      { path: "/Contact", element: <Contact />},
-      { path: "/shipTrack", element: <ShipTrack />},
-      { path: "/products", element: <Products />},
-      { path: "/aboutus", element: <AboutUs />},
-      { path: "/analytics", element: <Analytics />},
-      { path: "/faqs", element: <Faqs />},
-      
+    { path: "admin/login", element: <Login2 /> },
+
+    {
+      path: "/",
+      element: <Root />,
+      children: [
+        { path: "/", element: <Home /> },
+        { path: "/login", element: <Login /> },
+        { path: "/signup", element: <Singup /> },
+        { path: "/clientDashboard", element: <ClientDashboard /> },
+        { path: "/Contact", element: <Contact /> },
+        { path: "/shipTrack", element: <ShipTrack /> },
+        { path: "/products", element: <Products /> },
+        { path: "/aboutus", element: <AboutUs /> },
+        { path: "/analytics", element: <Analytics /> },
+        { path: "/faqs", element: <Faqs /> },
       ],
     },
     { path: "*", element: <NotFound /> },
