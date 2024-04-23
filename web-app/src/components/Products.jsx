@@ -1,91 +1,95 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const ProductsManagement = () => {
-  useEffect(
-    () => () => {
-      let data;
-      // Fetch data from backend
-    const fetchData = async () => {
-        try {
-            const response = await axios.get(
-                "http://localhost:8080/api/orders/warehouse?page=0&size=20"
-            );
-            console.log("Data fetched:", response.data);
-            return response.data;
-        } catch (error) {
-            console.error("Error fetching data:", error);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+     axios.get(
+          "http://localhost:8080/api/orders/warehouse?page=0&size=20"
+        ).then((response) => {
+            setData(response.data);
+            console.log("Data:", response.data);
+            }
+        ).catch((error) => {
+            console.error('Error getting user location:', error);
         }
-    };
+    );
+  }, [setData]);
 
-      data = fetchData();
-      console.log("Data:", data);
+  
 
-      // Initialize Ag-Grid instance
-      const initGrid = () => {
-        const gridOptions = {
-          rowData: data,
-          columnDefs: [
-            {
-              field: "id",
-              headerName: "Product ID",
-              filter: true,
-              sortable: true,
-              floatingFilter: true,
-              width: 150,
-            },
-            {
-              field: "totalAmount",
-              headerName: "Total Amount",
-              filter: true,
-              sortable: true,
-              floatingFilter: true,
-            },
-            {
-              field: "weightKg",
-              headerName: "Weight (kg)",
-              filter: true,
-              sortable: true,
-              floatingFilter: true,
-            },
-            {
-              field: "expirationDate",
-              headerName: "Expiration Date",
-              filter: true,
-              sortable: true,
-              floatingFilter: true,
-            },
-            {
-              headerName: "Actions",
-              cellRenderer: function (params) {
-                return `<div className="btn-group" role="group">
-                                        <button type="button" className="btn mx-1 rounded-2 btn-sm btn-light border-2 border border-dark" data-bs-toggle="modal" data-bs-target="#send" data-bs-dismiss="modal"><i className="ri-send-plane-fill"></i> Ship</button>
-                                    </div>`;
-              },
-              filter: false,
-              sortable: false,
-              autoHeight: true,
-              cellStyle: { textAlign: "center" },
-            },
-          ],
-          pagination: true,
-          removePivotHeaderRowWhenSingleValueColumn: true,
-          sideBar: true,
-          paginationPageSize: 20,
-          defaultColDef: {
-            flex: 1,
+  useEffect(() => {
+    console.log("datassss- ",data);
+    // Initialize Ag-Grid instance
+    const initGrid = () => {
+      const gridOptions = {
+        rowData: data,
+        columnDefs: [
+          {
+            field: "id",
+            headerName: "Product ID",
+            filter: true,
+            sortable: true,
+            floatingFilter: true,
+            width: 150,
           },
-        };
-
-        const gridDiv = document.querySelector("#productsGrid");
-
-        new agGrid.Grid(gridDiv, gridOptions);
+          {
+            field: "totalAmount",
+            headerName: "Total Amount",
+            filter: true,
+            sortable: true,
+            floatingFilter: true,
+          },
+          {
+            field: "weightKg",
+            headerName: "Weight (kg)",
+            filter: true,
+            sortable: true,
+            floatingFilter: true,
+          },
+          {
+            field: "expirationDate",
+            headerName: "Expiration Date",
+            filter: true,
+            sortable: true,
+            floatingFilter: true,
+          },
+          {
+            headerName: "Actions",
+            cellRenderer: function (params) {
+              return `<div class="btn-group" role="group">
+                                <button type="button" class="btn mx-1 rounded-2 btn-sm btn-light border-2 border border-dark" data-bs-toggle="modal" data-bs-target="#send" data-bs-dismiss="modal"><i class="ri-send-plane-fill"></i> Ship</button>
+                            </div>`;
+            },
+            filter: false,
+            sortable: false,
+            autoHeight: true,
+            cellStyle: { textAlign: "center" },
+          },
+        ],
+        pagination: true,
+        removePivotHeaderRowWhenSingleValueColumn: true,
+        sideBar: true,
+        paginationPageSize: 20,
+        defaultColDef: {
+          flex: 1,
+        },
       };
 
-      initGrid();
-    },
-    []
-  );
+      const gridDiv = document.querySelector("#productsGrid");
+
+        //   remove the ag-Grid old instance
+        if (gridDiv != null) {
+            gridDiv.innerHTML = "";
+        }
+
+
+      new agGrid.Grid(gridDiv, gridOptions);
+    };
+
+    initGrid();
+  }, [setData,data]);
 
   return (
     <>
