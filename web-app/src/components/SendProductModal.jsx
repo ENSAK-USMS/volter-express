@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import blueTruckImage from '../assets/bluetruck.jpg';
+import redTruckImage from '../assets/redtruck.jpg';
+import yellowTruckImage from '../assets/yellowtruck.jpg';
+
 
 const SendProductModal = ({ data }) => {
     const [step, setStep] = useState(1);
@@ -29,16 +32,32 @@ const SendProductModal = ({ data }) => {
         setFormData({ ...formData, [id]: value });
     };
 
+    const [preferredTimeSlots, setPreferredTimeSlots] = useState({
+        morning: false,
+        afternoon: false,
+        evening: false,
+        night: false,
+    });
     const trucks = [
-        { id: 1 },
-        { id: 2 },
-        { id: 3 },
-        // Add more trucks as needed
+        { id: 1, image: blueTruckImage },
+        { id: 2, image: redTruckImage },
+        { id: 3, image: yellowTruckImage },
+        { id: 4, image: redTruckImage },
+        { id: 5, image: yellowTruckImage },
+        { id: 6, image: blueTruckImage },
+        { id: 7, image: yellowTruckImage },
     ];
+
+    const handlePreferredTimeSlotChange = (e) => {
+        const { id, checked } = e.target;
+        setPreferredTimeSlots({ ...preferredTimeSlots, [id]: checked });
+    };
+
+    const shuffledTrucks = [...trucks].sort(() => Math.random() - 0.5);
 
     return (
         <div className="modal fade" id="send">
-            <div className="modal-dialog modal-dialog-centered modal-lg">
+            <div className="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
                 <div className="modal-content rounded-4 p-4">
                     <div className="modal-header">
                         <h4 className="modal-title">Place Order</h4>
@@ -203,61 +222,38 @@ const SendProductModal = ({ data }) => {
                         )}
                         {step === 3 && (
                             <form>
+                                {/* Form fields for step 2 */}
                                 <h5>Preferred Time Slots</h5>
                                 <div className="form-group d-flex my-3">
-                                    <div className="form-check me-auto">
-                                        <input
-                                            className="form-check-input"
-                                            type="checkbox"
-                                            value=""
-                                            id="morning"
-                                        />
-                                        <label className="form-check-label" htmlFor="morning">
-                                            Morning
-                                        </label>
-                                    </div>
-                                    <div className="form-check me-auto">
-                                        <input
-                                            className="form-check-input"
-                                            type="checkbox"
-                                            value=""
-                                            id="afternoon"
-                                        />
-                                        <label className="form-check-label" htmlFor="afternoon">
-                                            Afternoon
-                                        </label>
-                                    </div>
-                                    <div className="form-check me-auto">
-                                        <input
-                                            className="form-check-input"
-                                            type="checkbox"
-                                            value=""
-                                            id="evening"
-                                        />
-                                        <label className="form-check-label" htmlFor="evening">
-                                            Evening
-                                        </label>
-                                    </div>
-                                    <div className="form-check me-auto">
-                                        <input
-                                            className="form-check-input"
-                                            type="checkbox"
-                                            value=""
-                                            id="night"
-                                        />
-                                        <label className="form-check-label" htmlFor="night">
-                                            Night
-                                        </label>
-                                    </div>
+                                    {Object.entries(preferredTimeSlots).map(([slot, checked]) => (
+                                        <div key={slot} className="form-check me-auto">
+                                            <input
+                                                className="form-check-input"
+                                                type="checkbox"
+                                                id={slot}
+                                                checked={checked}
+                                                onChange={handlePreferredTimeSlotChange}
+                                            />
+                                            <label className="form-check-label" htmlFor={slot}>
+                                                {slot.charAt(0).toUpperCase() + slot.slice(1)}
+                                            </label>
+                                        </div>
+                                    ))}
                                 </div>
                                 <h5>Truck Selection</h5>
                                 <div className="row mt-3">
-                                    {trucks.map((truck) => (
+                                    {shuffledTrucks.map((truck) => (
                                         <div key={truck.id} className="col-md-4 mb-3">
                                             <div className="card-shadow rounded-4 p-3">
-                                                <img src={blueTruckImage} className="card-img-top" alt={`Truck ${truck.id}`} />
+                                                <img src={truck.image} className="card-img-top" alt={`Truck ${truck.id}`} />
                                                 <div className="card-footer text-center my-3">
                                                     <button type="button" className="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#redtruck" data-bs-dismiss="modal">Show route</button>
+                                                    <div className="form-check mt-2">
+                                                        <input className="form-check-input" type="checkbox" value="" id={`truck${truck.id}`} />
+                                                        <label className="form-check-label" htmlFor={`truck${truck.id}`}>
+                                                            Select Truck
+                                                        </label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
