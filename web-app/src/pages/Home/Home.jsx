@@ -60,7 +60,7 @@ function Home() {
 
       <div className="modal fade" id="orderLocationModal" tabIndex="-1">
         <div className="modal-dialog modal-dialog-centered modal-lg">
-          <div className="modal-content p-4 rounded-4 custom-modal">
+          <div className="modal-content p-5 rounded-4 custom-modal">
             <div className="modal-header">
               <h5 className="modal-title">Order Location</h5>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => setModalVisible(false)}></button>

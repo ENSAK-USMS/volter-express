@@ -201,7 +201,7 @@ const ProductsManagement = () => {
           </div>
         </div>
       </div>
-      <SendProductModal addWaypoint={addWaypoint} />
+      <SendProductModal data={data} />
       <RouteMap
         waypoints={[
           L.latLng(51.5, -0.09), 
