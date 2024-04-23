@@ -33,8 +33,8 @@ const OrdersTable = () => {
                         headerName: "Actions",
                         cellRenderer: function (params) {
                             return `<div class="btn-group" role="group">
-                                    <button type="button" class="btn mx-1 rounded-2 btn-sm btn-light border-2 border border-dark" data-bs-toggle="modal" data-bs-target="#viewModal" data-bs-dismiss="modal" title="Voir le Professeur"><i class="ri-route-fill"></i></button>
-                                  </div>`;
+                                        <button type="button" class="btn mx-1 rounded-2 btn-sm btn-light border-2 border border-dark" data-bs-toggle="modal" data-bs-target="#viewModal" data-bs-dismiss="modal" title="Voir le Professeur"><i class="ri-route-fill"></i></button>
+                                    </div>`;
                         },
                         filter: false,
                         sortable: false,
@@ -43,7 +43,7 @@ const OrdersTable = () => {
                     }
                 ],
                 removePivotHeaderRowWhenSingleValueColumn: true,
-                sideBar: true,              
+                sideBar: true,
                 pagination: true,
                 paginationPageSize: 20,
                 defaultColDef: {

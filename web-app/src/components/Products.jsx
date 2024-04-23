@@ -5,22 +5,20 @@ const ProductsManagement = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-     axios.get(
-          "http://localhost:8080/api/orders/warehouse?page=0&size=20"
-        ).then((response) => {
-            setData(response.data);
-            console.log("Data:", response.data);
-            }
-        ).catch((error) => {
-            console.error('Error getting user location:', error);
-        }
+    axios.get(
+      "http://localhost:8080/api/orders/warehouse?page=0&size=20"
+    ).then((response) => {
+      setData(response.data);
+      console.log("Data:", response.data);
+    }
+    ).catch((error) => {
+      console.error('Error getting user location:', error);
+    }
     );
   }, [setData]);
 
-  
-
   useEffect(() => {
-    console.log("datassss- ",data);
+    console.log("datassss- ", data);
     // Initialize Ag-Grid instance
     const initGrid = () => {
       const gridOptions = {
@@ -79,17 +77,17 @@ const ProductsManagement = () => {
 
       const gridDiv = document.querySelector("#productsGrid");
 
-        //   remove the ag-Grid old instance
-        if (gridDiv != null) {
-            gridDiv.innerHTML = "";
-        }
+      //   remove the ag-Grid old instance
+      if (gridDiv != null) {
+        gridDiv.innerHTML = "";
+      }
 
 
       new agGrid.Grid(gridDiv, gridOptions);
     };
 
     initGrid();
-  }, [setData,data]);
+  }, [setData, data]);
 
   return (
     <>
@@ -97,16 +95,9 @@ const ProductsManagement = () => {
         <div className="d-flex justify-content-between px-4 pt-4">
           <div className="text my-3 col-6">Products management</div>
           <div className="col-6 text-end">
-            <button
-              type="button"
-              className="btn btn-success px-5 py-2 rounded-3 m-1"
-              data-bs-toggle="modal"
-              data-bs-target="#createProduct"
-              data-bs-dismiss="modal"
-            >
-              <i className="ri-add-large-line"></i>
-              Create
-            </button>
+            <div class="btn-group" role="group">
+            <button type="button" class="btn mx-1 rounded-2 btn-light border-2 border border-dark" data-bs-toggle="modal" data-bs-target="#send" data-bs-dismiss="modal"><i class="ri-send-plane-fill"></i> Send Order</button>
+            </div>
           </div>
         </div>
         <div className="col-md-12 d-flex flex-column">
@@ -291,6 +282,30 @@ const ProductsManagement = () => {
           </div>
         </div>
       </div>
+      <div className="modal fade" id="mapModal" tabIndex="-1">
+                <div className="modal-dialog modal-dialog-centered modal-xl">
+                    <div className="modal-content rounded-4 px-2">
+                        <div className="modal-body">
+                            <div className="modal-header">
+                                <h5 className="modal-title">Map Modal</h5>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            {modalVisible && (
+                                <div style={{ height: '500px', width: '100%' }}>
+                                    <MapContainer center={position} zoom={13} style={{ height: '100%', width: '100%' }} scrollWheelZoom={true}>
+                                        <TileLayer
+                                            url='https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+                                            maxZoom={20}
+                                            subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
+                                        />
+                                        <LocationMarker />
+                                    </MapContainer>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            </div>
     </>
   );
 };

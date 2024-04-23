@@ -22,7 +22,7 @@ function Modal() {
                             </div>
                             <div className="col-md-6">
                                 <div className="mb-3">
-                                    <label htmlFor="username" className="form-label">UserName</label>
+                                    <label htmlFor="username" className="form-label">Username</label>
                                     <input type="text" className="form-control" id="username" placeholder="Your username" />
                                 </div>
                             </div>
