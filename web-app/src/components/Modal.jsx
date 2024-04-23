@@ -8,10 +8,22 @@ function Modal() {
                     <h2 className="text-center mb-4">Sign Up</h2>
                     <form>
                         <div className="row">
+                        <div className="col-md-6">
+                                <div className="mb-3">
+                                    <label htmlFor="fname" className="form-label">First Name</label>
+                                    <input type="text" className="form-control" id="fname" placeholder="Yourfirst Name" />
+                                </div>
+                            </div>
                             <div className="col-md-6">
                                 <div className="mb-3">
-                                    <label htmlFor="name" className="form-label">Name</label>
-                                    <input type="text" className="form-control" id="name" placeholder="Your Name" />
+                                    <label htmlFor="lname" className="form-label">Last Name</label>
+                                    <input type="text" className="form-control" id="lname" placeholder="Your Last Name" />
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <div className="mb-3">
+                                    <label htmlFor="username" className="form-label">UserName</label>
+                                    <input type="text" className="form-control" id="username" placeholder="Your username" />
                                 </div>
                             </div>
                             <div className="col-md-6">

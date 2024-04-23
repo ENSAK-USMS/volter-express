@@ -2,33 +2,68 @@ import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
 
 const MyChart = () => {
-  const chartRef = useRef(null);
+  const lineChartorderspermonth = useRef(null);
+  const chartCurrentordervslastmonth = useRef(null);
+  const barChart = useRef(null);
 
   useEffect(() => {
-    const ctx = chartRef.current.getContext('2d');
-    new Chart(ctx, {
-      type: 'bar',
+    // Line chart for orders per month
+    const ctx1 = lineChartorderspermonth.current.getContext('2d');
+    new Chart(ctx1, {
+      type: 'line',
       data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
         datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
+          label: 'Orders per Month',
+          data: [65, 59, 80, 81, 56, 55, 40],
+          fill: false,
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1
+        }]
+      },
+      options: {}
+    });
+
+    // Pie chart for orders for this month and the last month
+    const ctx2 = chartCurrentordervslastmonth.current.getContext('2d');
+    new Chart(ctx2, {
+      type: 'pie',
+      data: {
+        labels: ['This Month', 'Last Month'],
+        datasets: [{
+          label: 'Orders',
+          data: [300, 200],
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
           ],
           borderColor: [
             'rgba(255, 99, 132, 1)',
             'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
           ],
+          borderWidth: 1
+        }]
+      },
+      options: {}
+    });
+
+    // Bar chart for products still in warehouse and shipped
+    const ctx3 = barChart.current.getContext('2d');
+    new Chart(ctx3, {
+      type: 'bar',
+      data: {
+        labels: ['Product 1', 'Product 2', 'Product 3', 'Product 4', 'Product 5'],
+        datasets: [{
+          label: 'In Warehouse',
+          data: [12, 19, 3, 5, 2],
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgba(255, 99, 132, 1)',
+          borderWidth: 1
+        }, {
+          label: 'Shipped',
+          data: [8, 12, 5, 7, 4],
+          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          borderColor: 'rgba(54, 162, 235, 1)',
           borderWidth: 1
         }]
       },
@@ -69,12 +104,12 @@ const MyChart = () => {
             <p>Card 1 content</p>
           </div>
         </div>
-        <div className="col-6">
+        <div className="col-8 mt-4">
           <div className="card-shadow content rounded-4 p-5">
             <canvas ref={lineChartorderspermonth} width="400" height="200"></canvas>
           </div>
         </div>
-        <div className="col-6 row">
+        <div className="col-4 row mt-4">
           <div className="col-12">
             <div className="card-shadow content rounded-4 p-5">
               <canvas ref={chartCurrentordervslastmonth} width="400" height="200"></canvas>
@@ -88,7 +123,6 @@ const MyChart = () => {
         </div>
       </div>
     </div>
-
   );
 };
 
