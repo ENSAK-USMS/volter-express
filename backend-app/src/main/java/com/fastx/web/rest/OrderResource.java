@@ -169,4 +169,13 @@ public class OrderResource {
         orderService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id)).build();
     }
+
+    // get order at warehouse
+    @GetMapping("/warehouse")
+    public ResponseEntity<List<Order>> getOrdersAtWarehouse(
+            @org.springdoc.core.annotations.ParameterObject Pageable pageable) {
+        List<Order> orders = orderService.getOrdersAtWarehouse(pageable);
+        return ResponseEntity.ok().body(orders);
+    }
+
 }

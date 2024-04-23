@@ -27,7 +27,7 @@ describe('error-boundary-routes component', () => {
         </ErrorBoundaryRoutes>
       </MemoryRouter>,
     );
-    expect(container.innerHTML).toEqual('<div><h2 class="error">An unexpected error has occurred.</h2></div>');
+    expect(container.innerHTML).toEqual('<div><h2 className="error">An unexpected error has occurred.</h2></div>');
   });
 
   it('Should not render fallback component when route with uncaught error is not matched', () => {

@@ -3,6 +3,8 @@ package com.fastx.service.impl;
 import com.fastx.domain.Order;
 import com.fastx.repository.OrderRepository;
 import com.fastx.service.OrderService;
+
+import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -80,5 +82,10 @@ public class OrderServiceImpl implements OrderService {
     public void delete(String id) {
         log.debug("Request to delete Order : {}", id);
         orderRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Order> getOrdersAtWarehouse(Pageable pageable) {
+        return orderRepository.findByStatus(pageable,"At Wherehouse");
     }
 }
