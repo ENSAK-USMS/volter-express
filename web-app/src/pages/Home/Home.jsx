@@ -87,7 +87,7 @@ function Home() {
                     </div>
                     <div className="timeline-item">
                       <div className="timeline-content">
-                        <h5>Next City</h5>
+                        <h5>Khouringa</h5>
                         <p className='text-end text-muted'>04-23-2024</p>
                       </div>
                     </div>

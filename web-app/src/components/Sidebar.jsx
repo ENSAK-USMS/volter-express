@@ -14,7 +14,7 @@ function base() {
             </div>
                 <ul className="nav-list flex-column justify-content-center my-auto">
                     <li>
-                        <a href="#">
+                        <a href="/dashboard">
                             <i className="ri-dashboard-line"></i>
                             <span className="links_name">Tableau de bord</span>
                         </a>

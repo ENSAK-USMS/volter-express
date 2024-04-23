@@ -109,11 +109,8 @@ const ProductsManagement = () => {
   const [streetName, setStreetName] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
-  const [waypoints, setWaypoints] = useState([]);
+  const [location, setLocation] = useState("");
 
-  const addWaypoint = (waypoint) => {
-    setWaypoints([...waypoints, waypoint]);
-  };
   const navigate = useNavigate();
 
   const handleSignUp = async () => {
@@ -145,7 +142,23 @@ const ProductsManagement = () => {
     document.getElementById(
       "location"
     ).value = `Latitude: ${lat}, Longitude: ${lng}`;
+    setLocation(`${lat},${lng}`);
+    addWaypoint(L.latLng(lat, lng)); // Add the clicked location to waypoints
   };
+
+  const [waypoints, setWaypoints] = useState([
+    L.latLng(34.020882, -6.841650), // Rabat
+    L.latLng(33.971590, -6.849813), // Temara
+    L.latLng(33.926039, -6.894477), // Bouznika
+    L.latLng(33.691515, -7.392832), // Mohammedia
+    L.latLng(33.595062, -7.618754), // Ain Harrouda
+  ]);
+
+  const addWaypoint = (waypoint) => {
+    setWaypoints([...waypoints, waypoint]);
+  };
+
+
 
   useEffect(() => {
     const modal = document.getElementById("mapModal");
@@ -157,7 +170,6 @@ const ProductsManagement = () => {
     };
   }, [setModalVisible, handleMapClick]);
 
-  // Define custom marker icon
   const customMarkerIcon = new L.Icon({
     iconUrl: markerIcon,
     shadowUrl: markerShadow,
@@ -202,16 +214,8 @@ const ProductsManagement = () => {
         </div>
       </div>
       <SendProductModal data={data} />
-      <RouteMap
-        waypoints={[
-          L.latLng(34.020882, -6.841650), // Rabat
-          L.latLng(33.971590, -6.849813), // Temara
-          L.latLng(33.926039, -6.894477), // Bouznika
-          L.latLng(33.691515, -7.392832), // Mohammedia
-          L.latLng(33.595062, -7.618754), // Ain Harrouda
-          L.latLng(33.589886, -7.603869), // Casablanca
-        ]}
-      />
+      <RouteMap waypoints={waypoints} />
+
 
       <div className="modal fade" id="mapModal" tabIndex="-1">
         <div className="modal-dialog modal-dialog-centered modal-xl">

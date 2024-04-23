@@ -13,7 +13,7 @@ function Header() {
           <div className="container">
             <nav className="nav">
               <div className="nav_data">
-                <a href="#" className="nav_logo p-1 text_purple">
+                <a href="/" className="nav_logo p-1 text_purple">
                   <div className="d-flex align-items-center">
                     <img src={logo} height={50} className="me-2" />
                     <h4

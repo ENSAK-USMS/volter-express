@@ -35,7 +35,7 @@ const Router = () => {
         //</AuthGuard>
       ),
       children: [
-        { path: "dashboard", element: <Dashboard /> },
+        { path: "dashboard", element: <ClientDashboard /> },
         { path: "order", element: <Order /> },
         { path: "customer", element: <Customer /> },
         { path: "truck", element: <Truck /> },
