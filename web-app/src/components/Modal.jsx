@@ -4,7 +4,7 @@ function Modal() {
     return (
         <div>
             <div className="container d-flex justify-content-center align-items-center vh-100">
-                <div className="card shadow p-4 rounded col-7">
+                <div className="card shadow p-5 rounded col-7 rounded-4">
                     <h2 className="text-center mb-4">Sign Up</h2>
                     <form>
                         <div className="row">
