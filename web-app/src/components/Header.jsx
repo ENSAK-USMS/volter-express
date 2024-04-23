@@ -53,7 +53,7 @@ function Header() {
                       Contacts
                     </a>
                   </li>
-                  {isInitialized && (
+                  {isAuthenticated && (
                     <>
                       <li>
                         <a href="products" className="nav_link">
