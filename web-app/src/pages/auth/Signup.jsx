@@ -12,26 +12,37 @@ export default function SignUp() {
     
     useEffect(() => {
         const modalElement = document.getElementById('mapModal');
-        let map = null;
     
         if (modalElement) {
+            // Function to initialize the map
             const initializeMap = () => {
-                if (!mapInitialized && !map) {
+                if (!mapInitialized) {
+                    const mapContainer = document.getElementById('mapContainer');
+                    if (!mapContainer) {
+                        // If map container is not found, create it
+                        const newMapContainer = document.createElement('div');
+                        newMapContainer.id = 'mapContainer';
+                        modalElement.appendChild(newMapContainer);
+                    }
+    
+                    // Initialize map centered at user's current position
                     navigator.geolocation.getCurrentPosition(
                         (position) => {
                             const { latitude, longitude } = position.coords;
-                            map = L.map('mapContainer').setView([latitude, longitude], 16);
+                            const map = L.map('mapContainer').setView([latitude, longitude], 16);
     
                             L.tileLayer('http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}', {
                                 maxZoom: 20,
                                 subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
                             }).addTo(map);
     
+                            // Initialize the marker and circle at user's position
                             const initialPosition = L.latLng(latitude, longitude);
                             const newMarker = L.marker(initialPosition, { draggable: true }).addTo(map);
                             const circle = L.circle(initialPosition, { radius: 15, fillColor: 'red' }).addTo(map);
                             document.getElementById('location').value = `Latitude: ${initialPosition.lat}, Longitude: ${initialPosition.lng}`;
     
+                            // Event handler for marker dragend
                             newMarker.on('dragend', (e) => {
                                 const coordinates = e.target.getLatLng();
                                 circle.setLatLng(coordinates);
@@ -40,6 +51,7 @@ export default function SignUp() {
     
                             setMarker(newMarker);
     
+                            // Set mapInitialized to true after initialization
                             setMapInitialized(true);
                         },
                         (error) => {
@@ -49,31 +61,37 @@ export default function SignUp() {
                 }
             };
     
-            const removeMap = () => {
-                if (map) {
-                    map.off(); // Remove all event listeners
-                    map.remove(); // Remove the map
-                    map = null; // Reset the map variable
-                }
+            // Check if the modal is currently being shown
+            const isModalShown = () => modalElement.classList.contains('show');
+    
+            // If the modal is shown, initialize the map
+            if (isModalShown()) {
+                initializeMap();
+            }
+    
+            // Event listener for when the modal is shown
+            const onModalShow = () => {
+                initializeMap();
             };
     
-            modalElement.addEventListener('shown.bs.modal', initializeMap);
-            modalElement.addEventListener('hidden.bs.modal', () => {
-                removeMap(); // Remove map when modal is hidden
+            // Event listener for when the modal is hidden
+            const onModalHidden = () => {
+                // Reset mapInitialized state when modal is hidden
                 setMapInitialized(false);
-            });
     
-            return () => {
-                removeMap(); // Clean up when unmounting
-                modalElement.removeEventListener('shown.bs.modal', initializeMap);
-                modalElement.removeEventListener('hidden.bs.modal', () => {
-                    setMapInitialized(false);
-                });
             };
-        } else {
-            mapInitialized && setMapInitialized(false);
+    
+            // Add event listeners for modal show and hidden events
+            modalElement.addEventListener('shown.bs.modal', onModalShow);
+            modalElement.addEventListener('hidden.bs.modal', onModalHidden);
+    
+            // Clean up event listeners when unmounting
+            return () => {
+                modalElement.removeEventListener('shown.bs.modal', onModalShow);
+                modalElement.removeEventListener('hidden.bs.modal', onModalHidden);
+            };
         }
-    }, []); // No dependencies to ensure it runs only once
+    }, []);
     
     
     
@@ -95,7 +113,7 @@ export default function SignUp() {
     return (
         <>
             <div className="container d-flex justify-content-center align-items-center vh-100">
-                <div className="card shadow p-5 rounded col-7 rounded-4">
+                <div className="card shadow p-4 rounded col-7">
                     <h2 className="text-center mb-4">Sign Up</h2>
                     <form>
                         <div className="row">

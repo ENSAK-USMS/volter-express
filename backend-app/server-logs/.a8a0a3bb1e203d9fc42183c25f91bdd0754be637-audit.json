@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 15
+    },
+    "auditLog": "C:\\Users\\yassi\\Desktop\\volter-express\\backend-app\\server-logs\\.a8a0a3bb1e203d9fc42183c25f91bdd0754be637-audit.json",
+    "files": [
+        {
+            "date": 1713805743303,
+            "name": "C:\\Users\\yassi\\Desktop\\volter-express\\backend-app\\server-logs\\2024-04-22.log",
+            "hash": "0ad8538ec2b14b423c99089561bd6a126e77b4c80f47854154aaadd68a0c6db2"
+        }
+    ],
+    "hashType": "sha256"
+}

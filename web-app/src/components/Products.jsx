@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
-import Modal from '../components/Modal'
 
 const ProductsManagement = () => {
     useEffect(() => {
-        // Function to generate sample data
         function generateData(count) {
             const data = [];
             for (let i = 0; i < count; i++) {
@@ -17,7 +15,6 @@ const ProductsManagement = () => {
             return data;
         }
 
-        // Initialize Ag-Grid instance
         const initGrid = () => {
             const gridOptions = {
                 rowData: generateData(100), // Generate sample data
@@ -76,7 +73,6 @@ const ProductsManagement = () => {
                     </div>
                 </div>
             </div>
-
             <div className="modal fade" id="send">
                 <div className="modal-dialog modal-dialog-centered modal-lg">
                     <div className="modal-content rounded-4 p-4">
@@ -133,8 +129,7 @@ const ProductsManagement = () => {
                                         <div className="mb-3">
                                             <label className="form-label">Localisation</label>
                                             <div className="input-group">
-                                                <input type="text" className="form-control red" id="location" placeholder="Votre localisation" disabled />
-                                                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mapModal">Sélectionner <i className="ri-road-map-line"></i></button>
+                                                <input type="text" className="form-control red" id="location" placeholder="Votre localisation"/>
                                             </div>
                                         </div>
                                     </div>
@@ -160,7 +155,6 @@ const ProductsManagement = () => {
                     </div>
                 </div>
             </div>
-        <Modal />
         </>
     );
 };

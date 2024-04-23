@@ -10,6 +10,7 @@ import ShipTrack from './components/Shiptrack'
 import AboutUs from './components/AboutUs'
 import Analytics from './components/Analytics'
 import Products from './components/Products'
+import Faqs from './components/Faqs'
 // pages
 
 import NotFound from "./pages/NotFound";
@@ -44,6 +45,7 @@ const Router = () => {
       { path: "/products", element: <Products />},
       { path: "/aboutus", element: <AboutUs />},
       { path: "/analytics", element: <Analytics />},
+      { path: "/faqs", element: <Faqs />},
       
       ],
     },
