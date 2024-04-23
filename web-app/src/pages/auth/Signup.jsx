@@ -54,9 +54,16 @@ export default function SignUp() {
                                         <TileLayer
                                             url='https://tile.openstreetmap.org/{z}/{x}/{y}.png'
                                             maxZoom={20}
-                                            subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
+                                            subdomains={['a', 'b', 'c']}
                                         />
-                                        {position && <Marker position={position} icon={customMarkerIcon} />}
+                                        {position && (
+                                            <Marker position={position} icon={customMarkerIcon} draggable={true} eventHandlers={{
+                                                dragend: (e) => {
+                                                    setPosition([e.target.getLatLng().lat, e.target.getLatLng().lng]);
+                                                    document.getElementById('location').value = `Latitude: ${e.target.getLatLng().lat}, Longitude: ${e.target.getLatLng().lng}`;
+                                                },
+                                            }} />
+                                        )}
                                     </MapContainer>
                                 </div>
                             )}
