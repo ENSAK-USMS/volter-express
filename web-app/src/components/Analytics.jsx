@@ -43,9 +43,52 @@ const MyChart = () => {
   }, []);
 
   return (
-    <div className="container card-shadow content mb-5 mt-4 rounded-4 p-5">
-      <canvas ref={chartRef} width="400" height="200"></canvas>
+    <div className="container ">
+      <div className="row text-capitalize">
+        <div className="col-3">
+          <div className="card-shadow content mt-4 rounded-4 p-5 ">
+            <h5>Number of clients</h5>
+            <p>1831</p>
+          </div>
+        </div>
+        <div className="col-3">
+          <div className="card-shadow content mt-4 rounded-4 p-5 ">
+            <h5>Orders Sent</h5>
+            <p>3813</p>
+          </div>
+        </div>
+        <div className="col-3">
+          <div className="card-shadow content mt-4 rounded-4 p-5 ">
+            <h5>Products available</h5>
+            <p>1373</p>
+          </div>
+        </div>
+        <div className="col-3">
+          <div className="card-shadow content mt-4 rounded-4 p-5 ">
+            <h5>Card 1</h5>
+            <p>Card 1 content</p>
+          </div>
+        </div>
+        <div className="col-6">
+          <div className="card-shadow content rounded-4 p-5">
+            <canvas ref={lineChartorderspermonth} width="400" height="200"></canvas>
+          </div>
+        </div>
+        <div className="col-6 row">
+          <div className="col-12">
+            <div className="card-shadow content rounded-4 p-5">
+              <canvas ref={chartCurrentordervslastmonth} width="400" height="200"></canvas>
+            </div>
+          </div>
+          <div className="col-12">
+            <div className="card-shadow content rounded-4 p-5">
+              <canvas ref={barChart} width="400" height="200"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
   );
 };
 
