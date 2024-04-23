@@ -296,11 +296,9 @@ export default function SignUp() {
                                         <TileLayer
                                             url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
                                             maxZoom={20}
-                                            subdomains={["a", "b", "c"]}
+                                            subdomains={['a', 'b', 'c']}
                                         />
-                                        {position && (
-                                            <Marker position={position} icon={customMarkerIcon} />
-                                        )}
+                                        {position && <Marker position={position} icon={customMarkerIcon} />}
                                     </MapContainer>
                                 </div>
                             )}

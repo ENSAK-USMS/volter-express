@@ -1,6 +1,7 @@
 body {
-    background: linear-gradient(109.6deg, rgb(6, 183, 249) 11.2%, rgb(25, 74, 236) 91.1%);
-    min-height: 120vh;
+    background: linear-gradient(138deg, rgb(32, 201, 255) 36.7%, rgb(0, 8, 187) 84.4%, rgb(255, 255, 255) 119.7%);
+    height: 100vh;
+    background-attachment: fixed;
 }
 
 .bg-transparent {

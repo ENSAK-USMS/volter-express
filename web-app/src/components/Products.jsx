@@ -1,26 +1,33 @@
-import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useRef } from 'react';
+import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+import markerIcon from 'leaflet/dist/images/marker-icon.png';
+import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+import SendProductModal from './SendProductModal'
+import RouteMap from "./RouteMap";
+
 
 const ProductsManagement = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-     axios.get(
-          "http://localhost:8080/api/orders/warehouse?page=0&size=20"
-        ).then((response) => {
-            setData(response.data);
-            console.log("Data:", response.data);
-            }
-        ).catch((error) => {
-            console.error('Error getting user location:', error);
-        }
+    axios.get(
+      "http://localhost:8080/api/orders/warehouse?page=0&size=20"
+    ).then((response) => {
+      setData(response.data);
+      console.log("Data:", response.data);
+    }
+    ).catch((error) => {
+      console.error('Error getting user location:', error);
+    }
     );
   }, [setData]);
 
-  
-
   useEffect(() => {
-    console.log("datassss- ",data);
+    console.log("datassss- ", data);
     // Initialize Ag-Grid instance
     const initGrid = () => {
       const gridOptions = {
@@ -79,17 +86,97 @@ const ProductsManagement = () => {
 
       const gridDiv = document.querySelector("#productsGrid");
 
-        //   remove the ag-Grid old instance
-        if (gridDiv != null) {
-            gridDiv.innerHTML = "";
-        }
+      //   remove the ag-Grid old instance
+      if (gridDiv != null) {
+        gridDiv.innerHTML = "";
+      }
 
 
       new agGrid.Grid(gridDiv, gridOptions);
     };
 
     initGrid();
-  }, [setData,data]);
+  }, [setData, data]);
+
+  const [position, setPosition] = useState([34.020882, -6.841650]); // Initial position set to Rabat
+  const [modalVisible, setModalVisible] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [streetName, setStreetName] = useState("");
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleSignUp = async () => {
+    try {
+      const response = await axios.post("http://localhost:8080/api/register", {
+        firstName,
+        lastName,
+        "login": username,
+        email,
+        password
+      });
+      navigate("/login");
+    } catch (error) {
+      // Handle error
+      console.error(error);
+    }
+  };
+
+  // Call handleSignUp when the signup form is submitted
+  // For example, if you have a form with an onSubmit event handler
+  // <form onSubmit={handleSignUp}>
+  //   ...
+  //   <button type="submit">Sign Up</button>
+  // </form>
+
+  const handleMapClick = (e) => {
+    const { lat, lng } = e.latlng;
+    setPosition([lat, lng]);
+    document.getElementById(
+      "location"
+    ).value = `Latitude: ${lat}, Longitude: ${lng}`;
+  };
+
+  useEffect(() => {
+    const modal = document.getElementById("mapModal");
+    const modalListener = () => setModalVisible(true);
+
+    modal.addEventListener("shown.bs.modal", modalListener);
+    return () => {
+      modal.removeEventListener("shown.bs.modal", modalListener);
+    };
+  }, [setModalVisible, handleMapClick]);
+
+
+
+  // Define custom marker icon
+  const customMarkerIcon = new L.Icon({
+    iconUrl: markerIcon,
+    shadowUrl: markerShadow,
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+  });
+
+  function LocationMarker() {
+    useMapEvents({
+      click(e) {
+        handleMapClick(e);
+      },
+    });
+
+    return position === null ? null : (
+      <Marker position={position} icon={customMarkerIcon} />
+    );
+  }
+
 
   return (
     <>
@@ -97,16 +184,9 @@ const ProductsManagement = () => {
         <div className="d-flex justify-content-between px-4 pt-4">
           <div className="text my-3 col-6">Products management</div>
           <div className="col-6 text-end">
-            <button
-              type="button"
-              className="btn btn-success px-5 py-2 rounded-3 m-1"
-              data-bs-toggle="modal"
-              data-bs-target="#createProduct"
-              data-bs-dismiss="modal"
-            >
-              <i className="ri-add-large-line"></i>
-              Create
-            </button>
+            <div class="btn-group" role="group">
+              <button type="button" class="btn mx-1 rounded-2 btn-light border-2 border border-dark" data-bs-toggle="modal" data-bs-target="#send" data-bs-dismiss="modal"><i class="ri-send-plane-fill"></i> Send Order</button>
+            </div>
           </div>
         </div>
         <div className="col-md-12 d-flex flex-column">
@@ -120,173 +200,36 @@ const ProductsManagement = () => {
         </div>
       </div>
 
-      <div className="modal fade" id="send">
-        <div className="modal-dialog modal-dialog-centered modal-lg">
-          <div className="modal-content rounded-4 p-4">
-            <div className="modal-header">
-              <h5 className="modal-title">Send Product</h5>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
+      <SendProductModal />
+      <RouteMap
+        waypoints={[
+          L.latLng(51.5, -0.09), 
+          L.latLng(51.51, -0.1) 
+        ]}
+      />
+      <div className="modal fade" id="mapModal" tabIndex="-1">
+        <div className="modal-dialog modal-dialog-centered modal-xl">
+          <div className="modal-content rounded-4 px-2">
             <div className="modal-body">
-              <form>
-                <div className="row">
-                  <div className="col-md-6">
-                    <div className="mb-3">
-                      <label htmlFor="name" className="form-label">
-                        Name
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="name"
-                        placeholder="Your Name"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="mb-3">
-                      <label htmlFor="email" className="form-label">
-                        Email address
-                      </label>
-                      <input
-                        type="email"
-                        className="form-control"
-                        id="email"
-                        placeholder="name@example.com"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="mb-3">
-                      <label htmlFor="password" className="form-label">
-                        Password
-                      </label>
-                      <input
-                        type="password"
-                        className="form-control"
-                        id="password"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="mb-3">
-                      <label htmlFor="phone" className="form-label">
-                        Phone
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="phone"
-                        placeholder="Your Phone Number"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="mb-3">
-                      <label htmlFor="streetName" className="form-label">
-                        Street Name
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="streetName"
-                        placeholder="Your Street Name"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="mb-3">
-                      <label htmlFor="city" className="form-label">
-                        City
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="city"
-                        placeholder="Your City"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="mb-3">
-                      <label htmlFor="country" className="form-label">
-                        Country
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="country"
-                        placeholder="Your Country"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="mb-3">
-                      <label className="form-label">Localisation</label>
-                      <div className="input-group">
-                        <input
-                          type="text"
-                          className="form-control red"
-                          id="location"
-                          placeholder="Votre localisation"
-                          disabled
-                        />
-                        <button
-                          type="button"
-                          className="btn btn-primary"
-                          data-bs-toggle="modal"
-                          data-bs-target="#mapModal"
-                        >
-                          Sélectionner <i className="ri-road-map-line"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="mb-3">
-                      <label htmlFor="quantity" className="form-label">
-                        Quantity
-                      </label>
-                      <input
-                        type="number"
-                        className="form-control"
-                        id="quantity"
-                        placeholder="Quantity"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="mb-3">
-                      <label htmlFor="weight" className="form-label">
-                        Weight
-                      </label>
-                      <input
-                        type="number"
-                        className="form-control"
-                        id="weight"
-                        placeholder="Weight"
-                      />
-                    </div>
-                  </div>
+              <div className="modal-header">
+                <h5 className="modal-title">Map Modal</h5>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              {modalVisible && (
+                <div style={{ height: '500px', width: '100%' }}>
+                  <MapContainer center={position} zoom={13} style={{ height: '100%', width: '100%' }} scrollWheelZoom={true}>
+                    <TileLayer
+                      url='https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+                      maxZoom={20}
+                      subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
+                    />
+                    <LocationMarker />
+                  </MapContainer>
                 </div>
-              </form>
-            </div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="button" className="btn btn-primary">
-                Send
-              </button>
+              )}
+              <div className="modal-footer">
+                <button type="button" class="btn mx-1 rounded-2 btn-light border-2 border border-dark" data-bs-toggle="modal" data-bs-target="#send" data-bs-dismiss="modal">Go Back To The Form</button>
+              </div>
             </div>
           </div>
         </div>

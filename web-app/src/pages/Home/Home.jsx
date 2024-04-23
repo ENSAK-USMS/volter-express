@@ -10,10 +10,9 @@ function Home() {
           <div className="col-md-6 d-flex flex-column">
             <div className="row flex-fill">
               <div className="col-md-12">
-                <div className="card-shadow p-4 rounded-4 content">
+                <div className="card-shadow p-5 rounded-4 content">
                   <div className="home_data">
-                    <h2 className="home_title text-uppercase">FAST X</h2>
-                    <h3 className="home_subtitle">Fastest delivery service</h3>
+                    <h3 className="home_subtitle">FastX, Fastest delivery service</h3>
                     <p className="text-sm">Welcome to FAST X, your premier destination for fast and reliable delivery services. With our efficient delivery network and dedicated team.</p>
                     <div className="input-group position-relative">
                       <input type="text" className="form-control rounded-4 p-4" placeholder="Type a message..." id="promptText" style={{ zIndex: 0 }}></input>
@@ -26,7 +25,7 @@ function Home() {
                 </div>
               </div>
               <div className="col-md-12 mt-3">
-                <div className="card-shadow p-4 rounded-4 content flex-fill">
+                <div className="card-shadow p-5 rounded-4 content flex-fill">
                   <div className="login-content">
                     <h3>Sign Up or Login</h3>
                     <p>Welcome back! Log in to your account or sign up to get started.</p>

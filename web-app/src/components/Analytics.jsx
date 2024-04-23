@@ -16,12 +16,20 @@ const MyChart = () => {
         datasets: [{
           label: 'Orders per Month',
           data: [65, 59, 80, 81, 56, 55, 40],
-          fill: false,
-          borderColor: 'rgb(75, 192, 192)',
+          fill: true,
+          borderColor: '#1877F2',
+          backgroundColor: 'rgba(24, 119, 242, 0.2)', // Fill color same as line chart
           tension: 0.1
         }]
       },
-      options: {}
+      options: {
+        plugins: {
+          title: {
+            display: true,
+            text: 'Orders per Month'
+          }
+        }
+      }
     });
 
     // Pie chart for orders for this month and the last month
@@ -34,17 +42,24 @@ const MyChart = () => {
           label: 'Orders',
           data: [300, 200],
           backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
+            'rgba(24, 119, 242, 0.2)', // Fill color same as line chart
+            'rgba(24, 119, 242, 0.4)' // Fill color for last month
           ],
           borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
+            '#1877F2',
+            '#1877F2'
           ],
           borderWidth: 1
         }]
       },
-      options: {}
+      options: {
+        plugins: {
+          title: {
+            display: true,
+            text: 'Orders for This Month and Last Month'
+          }
+        }
+      }
     });
 
     // Bar chart for products still in warehouse and shipped
@@ -72,52 +87,61 @@ const MyChart = () => {
           y: {
             beginAtZero: true
           }
+        },
+        plugins: {
+          title: {
+            display: true,
+            text: 'Products in Warehouse and Shipped'
+          }
         }
       }
     });
   }, []);
 
+
   return (
-    <div className="container ">
+    <div className="container mb-5">
       <div className="row text-capitalize">
         <div className="col-3">
-          <div className="card-shadow content mt-4 rounded-4 p-5 ">
-            <h5>Number of clients</h5>
-            <p>1831</p>
+          <div className="card-shadow content mt-4 rounded-4 px-4 py-5">
+            <h4>Orders Sent</h4>
+            <h5 className='fw-bold'>3813</h5>
           </div>
         </div>
         <div className="col-3">
-          <div className="card-shadow content mt-4 rounded-4 p-5 ">
-            <h5>Orders Sent</h5>
-            <p>3813</p>
+          <div className="card-shadow content mt-4 rounded-4 px-4 py-5">
+            <h4>Products available</h4>
+            <h5 className='fw-bold'>1337</h5>
           </div>
         </div>
         <div className="col-3">
-          <div className="card-shadow content mt-4 rounded-4 p-5 ">
-            <h5>Products available</h5>
-            <p>1373</p>
+          <div className="card-shadow content mt-4 rounded-4 px-4 py-5">
+            <h4>Trucks available</h4>
+            <h5 className='fw-bold'>74</h5>
           </div>
         </div>
         <div className="col-3">
-          <div className="card-shadow content mt-4 rounded-4 p-5 ">
-            <h5>Card 1</h5>
-            <p>Card 1 content</p>
+          <div className="card-shadow content mt-4 rounded-4 px-4 py-5">
+            <h4>product about to expire</h4>
+            <h5 className='fw-bold'>74</h5>
           </div>
         </div>
-        <div className="col-8 mt-4">
-          <div className="card-shadow content rounded-4 p-5">
-            <canvas ref={lineChartorderspermonth} width="400" height="200"></canvas>
+        <div className="col-8">
+          <div className="card-shadow mt-4 content rounded-4 p-5 flex-fill">
+            <canvas ref={barChart} width="400" height="280"></canvas>
           </div>
         </div>
-        <div className="col-4 row mt-4">
-          <div className="col-12">
-            <div className="card-shadow content rounded-4 p-5">
-              <canvas ref={chartCurrentordervslastmonth} width="400" height="200"></canvas>
+        <div className="col-4  mt-4">
+          <div className="row d-flex flex-column">
+            <div className="col-12 flex-fill">
+              <div className="card-shadow content rounded-4 p-5">
+                <canvas ref={chartCurrentordervslastmonth} width="400" height="200"></canvas>
+              </div>
             </div>
-          </div>
-          <div className="col-12">
-            <div className="card-shadow content rounded-4 p-5">
-              <canvas ref={barChart} width="400" height="200"></canvas>
+            <div className="col-12 flex-fill">
+              <div className="card-shadow content rounded-4 p-2 pt-3 mt-4">
+                <canvas ref={lineChartorderspermonth} width="400" height="200"></canvas>
+              </div>
             </div>
           </div>
         </div>
