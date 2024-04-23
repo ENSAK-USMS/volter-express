@@ -6,8 +6,13 @@ import com.fastx.service.DeliveryTruckService;
 import com.fastx.web.rest.errors.BadRequestAlertException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
+import reactor.core.publisher.Flux;
+import tech.jhipster.web.util.HeaderUtil;
+import tech.jhipster.web.util.ResponseUtil;
+
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.Duration;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -15,9 +20,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.codec.ServerSentEvent;
 import org.springframework.web.bind.annotation.*;
-import tech.jhipster.web.util.HeaderUtil;
-import tech.jhipster.web.util.ResponseUtil;
+import org.springframework.http.MediaType;
 
 /**
  * REST controller for managing {@link com.fastx.domain.DeliveryTruck}.
@@ -167,5 +172,17 @@ public class DeliveryTruckResource {
         log.debug("REST request to delete DeliveryTruck : {}", id);
         deliveryTruckService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id)).build();
+    }
+
+
+    // add server sent event to get delivery truck location when it is updated
+    @GetMapping(path="/delivery-trucks/{id}/location", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public Flux<List<Float>> streamFlux() {
+        return Flux.interval(Duration.ofSeconds(2))
+            .map(tick -> {
+                // Get the current location of the truck
+                List<Float> location = deliveryTruckService.getCurrentLocation();
+                return location;
+            });
     }
 }
